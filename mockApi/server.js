@@ -5,19 +5,17 @@ import config from '../src/config';
 import * as actions from './actions/index';
 import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
-// import http from 'http';
-//import SocketIo from 'socket.io';
+import http from 'http';
+import SocketIo from 'socket.io';
 
 const pretty = new PrettyError();
 const app = express();
+const server = new http.Server(app);
 
-// const server = new http.Server(app);
-
-
-/*
 const io = new SocketIo(server);
 io.path('/ws');
 
+/*
 app.use(session({
   secret: 'react and redux rule!!!!',
   resave: false,
@@ -32,10 +30,6 @@ app.use(bodyParser.json());
 app.use((req, res) => {
 
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
-
-
-  console.log('splittedUrlPath', splittedUrlPath);
-
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {
@@ -56,11 +50,9 @@ app.use((req, res) => {
 });
 
 
-/*
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
-*/
 
 
 if (!config.mockApiPort) {
@@ -75,10 +67,18 @@ const runnable = app.listen(config.mockApiPort, (err) => {
   console.info('==> 💻 Send requests to http://%s:%s', 'localhost', config.mockApiPort);
 });
 
-
-/*
 io.on('connection', (socket) => {
-  socket.emit('news', {msg: `'Hello World!' from server`});
+
+  console.log('ws connection!');
+  //socket.emit('news', {msg: `'Hello World!' from server`});
+
+  setInterval(function() {
+    //socket.emit('news', {msg: Math.floor(Math.random() * 1000) + 1  })
+    socket.emit('msg', {
+      'id': messageIndex++,
+      'text': Math.floor(Math.random() * 1000) + 1
+    });
+  }, 2000);
 
   socket.on('history', () => {
     for (let index = 0; index < bufferSize; index++) {
@@ -98,5 +98,5 @@ io.on('connection', (socket) => {
   });
 });
 io.listen(runnable);
-*/
+
 
