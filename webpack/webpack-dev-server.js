@@ -4,12 +4,14 @@ var path = require('path');
 var serveStatic = require('serve-static');
 
 var webpackConfig = require('./dev.config');
+var config = require('../src/config');
+
 var compiler = webpack(webpackConfig);
 
 var host = process.env.HOST || 'localhost';
-var port = 3030;
+var port = config.port;
 var serverOptions = {
-  quiet: false,
+  quiet: true,
   noInfo: false,
   hot: true,
   inline: true,
@@ -23,6 +25,10 @@ var app = new Express();
 app.use(require('webpack-dev-middleware')(compiler, serverOptions));
 app.use(require('webpack-hot-middleware')(compiler));
 app.use(serveStatic(path.join(__dirname, '..')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
+});
 
 app.listen(port, function onAppListening(err) {
   if (err) {

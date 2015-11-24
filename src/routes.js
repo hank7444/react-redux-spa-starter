@@ -1,20 +1,23 @@
 import React from 'react';
 import {Router, Route, IndexRoute} from 'react-router';
+import createHistory from 'history/lib/createHashHistory';
 import {
     App,
     Home,
-    About
+    About,
+    Chart
   } from 'containers';
 
 
-const routes = (
+export default (store) => {
 
-  <Router>
-    <Route component={App}>
-      <Route path="/" component={Home}/>
-      <Route path="/about" component={About}/>
-    </Route>
-  </Router>
-);
-
-export default routes;
+  return (
+    <Router history={createHistory()}>
+      <Route component={App}>
+        <Route path="/" component={Home}/>
+        <Route path="/about" component={About}/>
+        <Route path="/chart" component={Chart}/>
+      </Route>
+    </Router>
+  );
+};

@@ -1,22 +1,27 @@
-import {createStore, combineReducers, compose } from 'redux';
-//import {reducer as form} from 'redux-form';
-//import account from './modules/account';
-//import submission from './modules/submission';
+import {createStore as _createStore, applyMiddleware, compose } from 'redux';
+import clientMiddleware from './middlewares/clientMiddleware';
 
-import account from './modules/account';
+export default function createStore(client) {
 
+  const middleware = [clientMiddleware(client)];
+  let finalCreateStore;
 
-const getCreateStore = () => {
-  // const {persistState} = require('redux-devtools');
-  return compose(
-    window.devToolsExtension ? window.devToolsExtension() : f => f,
-    // persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-  )(createStore);
-};
+  if (__DEVELOPMENT__) {
+    finalCreateStore = compose(
+      applyMiddleware(...middleware),
+      window.devToolsExtension ? window.devToolsExtension() : f => f,
+    )(_createStore);
 
-const reducer = combineReducers({
-  account
-});
-const store = getCreateStore()(reducer);
+  } else {
+    finalCreateStore = compose(
+      applyMiddleware(...middleware),
+    )(_createStore);
+  }
 
-export default store;
+  //finalCreateStore = reduxReactRouter({createHistory })(finalCreateStore);
+
+  const reducer = require('./modules/reducer');
+  const store = finalCreateStore(reducer);
+
+  return store;
+}

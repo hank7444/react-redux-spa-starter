@@ -1,17 +1,21 @@
 import 'babel/polyfill';
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import store from './redux/store';
-import component from './routes';
+import ApiClient from './helpers/ApiClient';
+import createStore from './redux/store';
+import getRoutes from './routes';
 
+const client = new ApiClient();
+const store = createStore(client);
+const component = getRoutes(store);
 const dest = document.getElementById('content');
 
-render(
-  (<Provider store={store}>
+ReactDOM.render(
+  <Provider store={store}>
     <div>
       {component}
     </div>
-  </Provider>),
+  </Provider>,
   dest
 );
