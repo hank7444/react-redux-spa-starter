@@ -6,19 +6,26 @@ import {
     App,
     Home,
     About,
-    Chart
+    Chart,
+    NotFound
   } from 'containers';
 
-const scrollableHistory = useScroll(createHistory);
+
+// 將queryKey關閉
+const scrollableHistory = useScroll(createHistory)({
+  queryKey: false
+});
 
 export default (store) => {
 
   return (
-    <Router history={scrollableHistory()}>
+    <Router history={scrollableHistory}>
       <Route component={App}>
         <Route path="/" component={Home}/>
         <Route path="/about" component={About}/>
         <Route path="/chart" component={Chart}/>
+
+        <Route path="*" component={NotFound} status={404} />
       </Route>
     </Router>
   );

@@ -1,8 +1,12 @@
 export default function loadInfo() {
   return new Promise((resolve) => {
-    resolve({
-      message: 'This came from the api server',
-      time: Date.now()
-    });
+
+    // simulate async load
+    setTimeout(() => {
+      resolve({
+        message: 'This came from the api server',
+        time: Date.now()
+      });
+    }, 1000);
   });
 }

@@ -1,7 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import { connect } from 'react-redux';
 import ReactHighcharts from 'react-highcharts/bundle/highcharts'; // Highcharts is bundled
 
 class Chart extends Component {
+
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  }
 
   state = {
     message: '',
@@ -10,34 +15,47 @@ class Chart extends Component {
   };
 
   componentDidMount() {
-    const chart = this.refs.chart.getChart();
-    //chart.series[0].addPoint(43);
+    console.log('do notthing');
 
-    if (socket && !this.onMsgListener) {
-      this.onMsgListener = socket.on('msg', this.onMessageReceived);
+    // 過兩秒導頁到about頁
+    /*
+    setTimeout(() => {
+      this.props.history.replaceState(null, '/about');
+    }, 2000);
+    */
+  }
 
-      setTimeout(() => {
-        socket.emit('history', {offset: 0, length: 100});
-      }, 100);
+  componentWillUnmount() {
+
+    console.log('Chart component unmount!');
+
+    if (socket) {
+      socket.removeListener('msg');
     }
   }
 
-
-  onMessageReceived = (data) => {
-
-    //console.log('socket-data', data);
+  highchartLoaded = (event) => {
 
     const points = this.state.points;
-    const messages = this.state.messages;
-    messages.push(data);
-    this.setState({messages});
+    const chart = event.target;
+    chart.series[0].addPoint(43);
 
-    points.push(data.text);
+    const onMessageReceived = (data) => {
 
+      // highchart有bug, loaded完有時候target會回傳空物件@@
+      console.log("chart", chart);
+      if (!chart.series) {
+        return false;
+      }
 
-    const chart = this.refs.chart.getChart();
-    chart.series[0].setData(points);
-    //console.log(messages);
+      points.push(data.text);
+      chart.series[0].setData(points);
+      //console.log(messages);
+    };
+
+    if (socket) {
+      socket.on('msg', onMessageReceived);
+    }
   }
 
   handleSubmit = (event) => {
@@ -55,7 +73,20 @@ class Chart extends Component {
 
   render() {
 
+    const that = this;
+
     const config = {
+      chart: {
+        events: {
+          load: function(event) {
+            //alert('Chart loaded');
+            console.log('Chart loaded', event);
+            //const chart = event.target;
+            //chart.series[0].addPoint(43);
+            that.highchartLoaded(event);
+          }
+        }
+      },
       /*
       xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -90,7 +121,7 @@ class Chart extends Component {
 
         <div>
           my chart
-          <ReactHighcharts config={config} ref="chart"/>
+          <ReactHighcharts config={config} ref="myChart"/>
         </div>
       </div>
     );

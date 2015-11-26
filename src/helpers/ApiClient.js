@@ -27,6 +27,27 @@ class _ApiClient {
         }
 
         request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+
+        /*
+        request.end(function(err, body) {
+
+          console.log('body', body);
+          return err ? reject(body || err) : resolve(body);
+        });
+        */
+
+
+        /*
+        request.end(function(err) {
+          var _ref2 = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+          var body = _ref2.body;
+
+          console.log('body', body);
+          return err ? reject(body || err) : resolve(body);
+        });
+        */
+
       }));
   }
 }

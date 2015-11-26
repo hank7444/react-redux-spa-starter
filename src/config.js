@@ -8,7 +8,7 @@ module.exports = {
   production: {
     port: 8080,
     mockApiPort: 3030,
-    useMockApi: false,
+    useMockApi: true,
     debug: false
   }
 }[process.env.NODE_ENV || 'development'];

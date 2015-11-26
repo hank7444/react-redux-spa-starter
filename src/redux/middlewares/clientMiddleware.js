@@ -6,6 +6,9 @@ export default function clientMiddleware(client) {
       }
 
       const { promise, types, ...rest } = action;
+
+      console.log('promise', promise);
+
       if (!promise) {
         return next(action);
       }
