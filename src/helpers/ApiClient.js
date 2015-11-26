@@ -27,7 +27,7 @@ class ApiClient {
           request.send(data);
         }
 
-        if (output && typeof output === 'function') {
+        if (output && output instanceof Function) {
           resolveFunc = (body) => output(body, resolve);
         }
         request.end((err, { body } = {}) => err ? reject(body || err) : resolveFunc(body));

@@ -4,7 +4,7 @@ import clientMiddleware from './middlewares/clientMiddleware';
 import apiClient from 'helpers/apiClient';
 
 
-export default function createStore() {
+export default function createStore(data) {
 
   const middleware = [clientMiddleware(apiClient, waterfall)];
   let finalCreateStore;
@@ -24,7 +24,7 @@ export default function createStore() {
   //finalCreateStore = reduxReactRouter({createHistory })(finalCreateStore);
 
   const reducer = require('./modules/reducer');
-  const store = finalCreateStore(reducer);
+  const store = finalCreateStore(reducer, data);
 
   return store;
 }

@@ -6,17 +6,19 @@
     "url": "https://github.com/erikras/redux-form"
   },
   "scripts": {
-    "build": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
     "start-dev": "node ./node_modules/better-npm-run start-dev",
     "start-prod": "node ./node_modules/better-npm-run start-prod",
     "start-mock-api": "node ./node_modules/better-npm-run start-mock-api",
     "dev": "concurrent --kill-others \"npm run start-dev\" \"npm run start-mock-api\"",
     "prod": "concurrent --kill-others \"npm run start-prod\" \"npm run start-mock-api\"",
+    "lint": "node ./node_modules/eslint/bin/eslint ./src",
     "clean": "rimraf dist",
-    "lint": "eslint src",
-    "prepublish": "npm run lint && npm run clean && npm test && npm run build",
-    "publish": "npm run prepublish && git add -f dist/* && git commit -m \"publishing\" && git push origin gh-pages",
-    "test": "mocha --compilers js:babel/register --recursive 'src/**/__tests__/*'"
+    "nsp": "node ./node_modules/nsp/bin/nsp check",
+    "test-dev": "node ./node_modules/better-npm-run test-dev",
+    "test-all": "node ./node_modules/better-npm-run test-all",
+    "build-prod": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
+    "build": "npm run nsp && npm run lint && npm run test-all && npm run clean && npm run build-prod",
+    "build-force": "npm run clean && npm run build-prod"
   },
   "keywords": [
     "react",
@@ -31,6 +33,18 @@
     "demo"
   ],
   "betterScripts": {
+    "test-dev": {
+      "command": "karma start",
+      "env": {
+        "TEST_ENV": "development"
+      }
+    },
+    "test-all": {
+      "command": "karma start",
+      "env": {
+        "TEST_ENV": "all"
+      }
+    },
     "start-dev": {
       "command": "node webpack/webpack-dev-server.js",
       "env": {
@@ -86,6 +100,7 @@
     "babel-runtime": "^5.8.25",
     "better-npm-run": "0.0.4",
     "body-parser": "^1.14.1",
+    "chai": "^3.4.1",
     "clean-webpack-plugin": "^0.1.3",
     "concurrently": "^1.0.0",
     "css-loader": "^0.23.0",
@@ -96,8 +111,20 @@
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.4",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-cli": "^0.1.1",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.1.1",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-sourcemap-loader": "^0.3.5",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.3.3",
+    "nsp": "^2.0.2",
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",
+    "react-addons-test-utils": "^0.14.3",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",
