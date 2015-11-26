@@ -15,8 +15,6 @@ const initialState = {
 */
 export default function reducer(state = initialState, action = {}) {
 
-  console.log('action from info reducer', action);
-
   switch (action.type) {
     case LOAD:
       return {
@@ -50,10 +48,109 @@ export function isLoaded(globalState) {
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/loadInfo'),
+    promises: (client) => client.get('/loadInfo'),
     'test': {
       data1: 1,
       data2: 2
     }
+  };
+}
+
+
+// all promises resolve, then succues
+export function loadAll() {
+  return {
+    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    promiseType: 'all',
+    promises: [(client) => client.get('/loadInfo'), (client) => client.get('/loadEinfo')],
+    'test': {
+      data1: 1,
+      data2: 2
+    }
+  };
+}
+
+// one of promises resolve, then succuess
+export function loadRace() {
+  return {
+    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    promiseType: 'race',
+    promises: [(client) => client.get('/loadInfo'), (client) => client.get('/loadEinfo')]
+  };
+}
+
+export function loadWaterfall() {
+
+  /*
+  // superagent直接暴露寫法參考
+  const func1 = () => {
+
+    return new Promise((resolve, reject) => {
+      superagent
+      .get('http://localhost:3030/loadInfo')
+      .end((err, res) => {
+
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res.body);
+        }
+      });
+    });
+
+  };
+  const func2 = (res1) => {
+
+    return new Promise((resolve, reject) => {
+      superagent
+      .get('http://localhost:3030/loadEinfo')
+      .query({
+        time: res1.time
+      })
+      .end((err, res) => {
+
+        if (err) {
+          reject(err);
+        } else {
+          res.body.message += ` ### ${res1.message}`;
+          resolve(res.body);
+        }
+      });
+    });
+  };
+  */
+
+  const step2Option = (bodyPrev) => {
+    return {
+      params: {
+        time: bodyPrev.time
+      },
+      output: (body, resolve) => {
+
+        body.message += ` ### ${bodyPrev.message}`;
+        resolve(body);
+      }
+    };
+  };
+
+  const step3Option = (bodyPrev) => {
+    return {
+      params: {
+        message: bodyPrev.message
+      },
+      output: (body, resolve) => {
+
+        body.message += ` ### ${bodyPrev.message}`;
+        resolve(body);
+      }
+    };
+  };
+
+  return {
+    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    promiseType: 'waterfall',
+    promises: [(client) => client.get('/loadInfo'),
+              (client, bodyPrev) => client.get('/loadEinfo', step2Option(bodyPrev)),
+              (client, bodyPrev) => client.get('/loadInfo', step3Option(bodyPrev))]
   };
 }

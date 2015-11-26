@@ -1,9 +1,12 @@
 import {createStore as _createStore, applyMiddleware, compose } from 'redux';
+import waterfall from 'promise-waterfall';
 import clientMiddleware from './middlewares/clientMiddleware';
+import ApiClient from 'helpers/ApiClient';
 
-export default function createStore(client) {
 
-  const middleware = [clientMiddleware(client)];
+export default function createStore() {
+
+  const middleware = [clientMiddleware(new ApiClient(), waterfall)];
   let finalCreateStore;
 
   if (__DEVELOPMENT__) {

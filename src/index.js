@@ -3,11 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import io from 'socket.io-client';
-import ApiClient from './helpers/ApiClient';
 import createStore from './redux/createStore';
 import getRoutes from './routes';
 
-const store = createStore(new ApiClient());
+const store = createStore();
 const component = getRoutes(store);
 const dest = document.getElementById('content');
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 //import { bindActionCreators } from 'redux';
 
-import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
+import { isLoaded as isInfoLoaded, load as loadInfo, loadAll, loadRace, loadWaterfall } from 'redux/modules/info';
 import * as einfoActions from 'redux/modules/einfo';
 
 import { Context, CounterButton } from 'components';
@@ -36,6 +36,42 @@ ECMA5 寫法
     }, dispatch);
   }
 )
+
+
+不使用connect decoroter寫法
+
+class App extends Component {
+  ...
+}
+
+// 放到最下面
+
+// 綁定屬性
+function mapStateToProps(state, ownProps) {
+
+  //console.log('ownProps', ownProps);
+  return {
+    errorMessage: state.errorMessage
+  };
+}
+
+// 綁定action
+function dispatchStateToProps(dispatch) {
+
+  console.log(dispatch);
+  //const resetErrorMessage = bindActionCreators(resetErrorMessage, dispatch);
+  return {
+      resetErrorMessage: bindActionCreators(resetErrorMessage, dispatch)
+  }
+}
+
+// connext([mapStateToProps], [mapDispatchToProps], [mergeProps])
+export default connect(
+  mapStateToProps,
+  //dispatchStateToProps
+  {resetErrorMessage}
+)(App);
+
 */
 
 @connect(
@@ -43,7 +79,7 @@ ECMA5 寫法
     info: state.info,
     einfo: state.einfoNewName
   }),
-  {loadInfo, ...einfoActions}
+  {loadInfo, loadAll, loadRace, loadWaterfall, ...einfoActions}
 )
 
 export default class App extends Component {
@@ -52,7 +88,10 @@ export default class App extends Component {
     children: PropTypes.any,
     info: PropTypes.object,
     loadInfo: PropTypes.func.isRequired,
-    loadEinfo: PropTypes.func.isRequired
+    loadEinfo: PropTypes.func.isRequired,
+    loadAll: PropTypes.func.isRequired,
+    loadRace: PropTypes.func.isRequired,
+    loadWaterfall: PropTypes.func.isRequired
   };
 
   static contextTypes = {
@@ -76,7 +115,10 @@ export default class App extends Component {
 
   componentDidMount() {
 
-    this.props.loadInfo();
+    //this.props.loadInfo();
+    //this.props.loadAll();
+    //this.props.loadRace();
+    this.props.loadWaterfall();
 
   }
 
@@ -90,14 +132,14 @@ export default class App extends Component {
 
     {/* 可以觀察到，當triggerLoadInfo一呼叫，讓redux store改變後，react會重新rerender畫面 */}
 
-    console.log('this.props', this.props);
+    //console.log('this.props', this.props);
 
     {/*
       this.context是很妙的屬性，可以讓child component拿到parent component設定的值而不需
       將值傳入child component中
     */}
 
-    console.log('this.context', this.context);
+    //console.log('this.context', this.context);
 
     const {info} = this.props;
 

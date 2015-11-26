@@ -15,7 +15,7 @@ function formatUrl(path) {
 class _ApiClient {
   constructor() {
     methods.forEach((method) =>
-      this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
+      this[method] = (path, { params, data, output } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
 
         if (params) {
@@ -26,27 +26,12 @@ class _ApiClient {
           request.send(data);
         }
 
-        request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        if (output) {
+          request.end((err, { body } = {}) => err ? reject(body || err) : output(body, resolve));
+        } else {
+          request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        }
 
-        /*
-        request.end(function(err, body) {
-
-          console.log('body', body);
-          return err ? reject(body || err) : resolve(body);
-        });
-        */
-
-
-        /*
-        request.end(function(err) {
-          var _ref2 = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-          var body = _ref2.body;
-
-          console.log('body', body);
-          return err ? reject(body || err) : resolve(body);
-        });
-        */
 
       }));
   }
