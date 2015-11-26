@@ -12,11 +12,12 @@ function formatUrl(path) {
   return adjustedPath;
 }
 
-class _ApiClient {
+class ApiClient {
   constructor() {
     methods.forEach((method) =>
       this[method] = (path, { params, data, output } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
+        let resolveFunc = (body) => resolve(body);
 
         if (params) {
           request.query(params);
@@ -26,17 +27,13 @@ class _ApiClient {
           request.send(data);
         }
 
-        if (output) {
-          request.end((err, { body } = {}) => err ? reject(body || err) : output(body, resolve));
-        } else {
-          request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        if (output && typeof output === 'function') {
+          resolveFunc = (body) => output(body, resolve);
         }
-
+        request.end((err, { body } = {}) => err ? reject(body || err) : resolveFunc(body));
 
       }));
   }
 }
 
-const ApiClient = _ApiClient;
-
-export default ApiClient;
+export default new ApiClient();

@@ -62,7 +62,8 @@ export function loadAll() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promiseType: 'all',
-    promises: [(client) => client.get('/loadInfo'), (client) => client.get('/loadEinfo')],
+    promises: [(client) => client.get('/loadInfo'),
+               (client) => client.get('/loadEinfo')],
     'test': {
       data1: 1,
       data2: 2
@@ -75,7 +76,8 @@ export function loadRace() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promiseType: 'race',
-    promises: [(client) => client.get('/loadInfo'), (client) => client.get('/loadEinfo')]
+    promises: [(client) => client.get('/loadInfo'),
+               (client) => client.get('/loadEinfo')]
   };
 }
 
@@ -127,7 +129,7 @@ export function loadWaterfall() {
       },
       output: (body, resolve) => {
 
-        body.message += ` ### ${bodyPrev.message}`;
+        body.message += ` ###1 ${bodyPrev.message}`;
         resolve(body);
       }
     };
@@ -140,7 +142,7 @@ export function loadWaterfall() {
       },
       output: (body, resolve) => {
 
-        body.message += ` ### ${bodyPrev.message}`;
+        body.message += ` ###2 ${bodyPrev.message}`;
         resolve(body);
       }
     };

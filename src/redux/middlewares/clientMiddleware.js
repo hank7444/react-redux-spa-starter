@@ -6,7 +6,7 @@ export default function clientMiddleware(apiClient, waterfall) {
         return action(dispatch, getState);
       }
 
-      const { promises, promiseType, types, ...rest } = action;
+      const {promises, promiseType, types, ...rest} = action;
       let finalPromise = null;
 
       if (!promises) {
@@ -27,7 +27,7 @@ export default function clientMiddleware(apiClient, waterfall) {
           break;
 
         case 'waterfall':
-          finalPromise = waterfall(promises.map((promiseObj, i) => {
+          finalPromise = waterfall(promises.map((promiseObj) => {
             return (res = null) => {
               return promiseObj(apiClient, res);
             };

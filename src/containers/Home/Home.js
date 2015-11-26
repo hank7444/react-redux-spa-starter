@@ -1,6 +1,30 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import { connect } from 'react-redux';
+import {loadWaterfall} from 'redux/modules/info';
+
+/*
+@connect(
+  state => ({}),
+  {loadWaterfall}
+)
+*/
 
 class Home extends Component {
+
+  /*
+  static propTypes = {
+    loadWaterfall: PropTypes.func.isRequired
+  };
+
+  componentDidMount() {
+
+    //this.props.loadInfo();
+    //this.props.loadAll();
+    //this.props.loadRace();
+    this.props.loadWaterfall();
+
+  }
+  */
 
   render() {
 
