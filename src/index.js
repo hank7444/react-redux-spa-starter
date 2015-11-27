@@ -2,14 +2,16 @@ import 'babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
+import {ReduxRouter} from 'redux-router';
 import io from 'socket.io-client';
 import createStore from './redux/createStore';
 import getRoutes from './routes';
 
 const store = createStore();
-const component = getRoutes(store);
 const dest = document.getElementById('content');
-
+const component = (
+  <ReduxRouter routes={getRoutes(store)} />
+);
 
 function initSocket() {
 

@@ -26,9 +26,11 @@ app.use(require('webpack-dev-middleware')(compiler, serverOptions));
 app.use(require('webpack-hot-middleware')(compiler));
 app.use(serveStatic(path.join(__dirname, '..')));
 
+/*
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
+*/
 
 app.listen(port, function onAppListening(err) {
   if (err) {

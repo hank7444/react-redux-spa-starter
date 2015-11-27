@@ -9,9 +9,11 @@ var app = new Express();
 
 app.use(serveStatic(path.join(__dirname, '..')));
 
+/*
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
+*/
 
 app.listen(port, function onAppListening(err) {
   if (err) {

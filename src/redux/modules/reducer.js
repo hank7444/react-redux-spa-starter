@@ -1,4 +1,5 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
+import {routerStateReducer} from 'redux-router';
 import info from './info';
 import einfo from './einfo';
 import counter from './counter';
@@ -28,6 +29,7 @@ import counter from './counter';
 */
 
 export default combineReducers({
+  router: routerStateReducer,
   info,
   einfoNewName: einfo,
   counter

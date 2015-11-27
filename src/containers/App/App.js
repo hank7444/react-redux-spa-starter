@@ -130,14 +130,14 @@ export default class App extends Component {
   render() {
     const styles = require('./App.scss');
 
-    {/* 可以觀察到，當triggerLoadInfo一呼叫，讓redux store改變後，react會重新rerender畫面 */}
+    // 可以觀察到，當triggerLoadInfo一呼叫，讓redux store改變後，react會重新rerender畫面
 
-    //console.log('this.props', this.props);
+    console.log('this.props', this.props);
 
-    {/*
+    /*
       this.context是很妙的屬性，可以讓child component拿到parent component設定的值而不需
       將值傳入child component中
-    */}
+    */
 
     //console.log('this.context', this.context);
 

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import ReactHighcharts from 'react-highcharts/bundle/highcharts'; // Highcharts is bundled
 
+
 class Chart extends Component {
 
   static propTypes = {
@@ -44,9 +45,12 @@ class Chart extends Component {
 
       // highchart有bug, loaded完有時候target會回傳空物件@@
       console.log("chart", chart);
+
+
       if (!chart.series) {
         return false;
       }
+
 
       points.push(data.text);
       chart.series[0].setData(points);
@@ -121,7 +125,7 @@ class Chart extends Component {
 
         <div>
           my chart
-          <ReactHighcharts config={config} ref="myChart"/>
+          <ReactHighcharts config={config} isPureConfig={true} ref="myChart"/>
         </div>
       </div>
     );
