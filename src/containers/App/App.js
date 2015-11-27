@@ -80,7 +80,8 @@ export default connect(
   state => ({
     user: state.auth.user,
     info: state.info,
-    einfo: state.einfoNewName
+    einfo: state.einfoNewName,
+    router: state.router
   }),
   {loadInfo, loadAll, loadRace, loadWaterfall, ...einfoActions, logout, pushState}
 )
@@ -97,11 +98,12 @@ export default class App extends Component {
     loadRace: PropTypes.func.isRequired,
     loadWaterfall: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired,
-    logout: PropTypes.func
+    logout: PropTypes.func,
+    router: PropTypes.object
   };
 
   static contextTypes = {
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
   };
 
 
@@ -125,18 +127,42 @@ export default class App extends Component {
     //this.props.loadAll();
     //this.props.loadRace();
     this.props.loadWaterfall();
-
   }
 
 
   // 透過redux state redirect route的工作，請在這裡進行
   componentWillReceiveProps(nextProps) {
 
+
+    const router = this.props.router;
+    const history = this.props.history;
+    const nextRouter = nextProps.router;
+
+
+    // 這邊測試route轉換前(從/login跳出時)先確認，但是url改變了....
+    /*
+    if (router.location.pathname === '/login' && nextRouter.location.pathname !== '/login') {
+      console.log('######################');
+      if (!window.confirm('確認要離開登入頁?')) {
+        history.replaceState(null, '/login');
+      }
+    }
+    */
     if (!this.props.user && nextProps.user) {
       // login
       this.props.pushState(null, '/about');
     }
 
+  }
+
+
+  // 如果return false則畫面不作任何改變, 也不會導頁!
+  shouldComponentUpdate(nextProps, nextState) {
+    const router = this.props.router;
+    const nextRouter = nextProps.router;
+
+
+    return true;
   }
 
 
@@ -164,7 +190,7 @@ export default class App extends Component {
       將值傳入child component中
     */
 
-    //console.log('this.context', this.context);
+    console.log('this.context', this.context);
 
     const {info, user} = this.props;
 
@@ -178,9 +204,9 @@ export default class App extends Component {
               </Link>
 
               <ul className="nav navbar-nav">
-                <li><Link to="about">About</Link></li>
-                <li><Link to="chart">Chart</Link></li>
-                {!user && <li><Link to="login">Login</Link></li>}
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/chart">Chart</Link></li>
+                {!user && <li><Link to="/login">Login</Link></li>}
                 {user && <li><a href="#" onClick={this.handleLogout.bind(this, 'aaa')}>logout</a></li>}
               </ul>
             </div>

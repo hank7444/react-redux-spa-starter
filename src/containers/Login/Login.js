@@ -1,9 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as authActions from 'redux/modules/auth';
-
-console.log('authActions', authActions);
-
+import reactMixin from 'react-mixin';
+import { Lifecycle } from 'react-router';
 
 @connect(
   state => ({
@@ -13,6 +12,8 @@ console.log('authActions', authActions);
     ...authActions
   }
 )
+// WTF, 放在@connect上面就不work了..
+@reactMixin.decorate(Lifecycle)
 
 class Login extends Component {
 
@@ -20,6 +21,22 @@ class Login extends Component {
     user: PropTypes.object,
     login: PropTypes.func,
     logout: PropTypes.func
+  }
+
+  constructor(props) {
+    super(props);
+    this.routerWillLeave = this.routerWillLeave.bind(this);
+  }
+
+  routerWillLeave(nextLocation) {
+
+    console.log('##################@@@@@@@@@@@@@@@@@heeeeelo!');
+
+    // 同等window.confirm
+    //return 'Your work is not saved! Are you sure you want to leave?';
+
+    // 換頁
+    //return true;
   }
 
   handleSubmit(event) {

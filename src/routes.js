@@ -33,7 +33,7 @@ export default (store) => {
       </Route>
 
       <Route path="/chart" component={Chart}/>
-      <Route path="/Login" component={Login}/>
+      <Route path="/login" component={Login}/>
       <Route path="*" component={NotFound} status={404} />
     </Route>
   );

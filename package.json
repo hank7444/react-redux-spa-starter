@@ -84,6 +84,7 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-highcharts": "^5.0.4",
+    "react-mixin": "^3.0.3",
     "react-redux": "^4.0.0",
     "react-router": "^1.0.0-rc3",
     "scroll-behavior": "^0.3.0",
