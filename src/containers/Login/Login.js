@@ -30,7 +30,7 @@ class Login extends Component {
 
   routerWillLeave(nextLocation) {
 
-    console.log('##################@@@@@@@@@@@@@@@@@heeeeelo!');
+    console.log('##routerWillLeave##: ', nextLocation);
 
     // 同等window.confirm
     //return 'Your work is not saved! Are you sure you want to leave?';
