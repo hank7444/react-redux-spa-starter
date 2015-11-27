@@ -7,10 +7,13 @@ import io from 'socket.io-client';
 import createStore from './redux/createStore';
 import getRoutes from './routes';
 
-const store = createStore();
+
+// default的redux state
+const initialState = {};
+const store = createStore(initialState);
 const dest = document.getElementById('content');
 const component = (
-  <ReduxRouter routes={getRoutes(store)} />
+  <ReduxRouter routes={getRoutes(store)}/>
 );
 
 function initSocket() {

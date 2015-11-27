@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { pushState } from 'redux-router';
 import { Link } from 'react-router';
 //import { bindActionCreators } from 'redux';
 
 import { isLoaded as isInfoLoaded, load as loadInfo, loadAll, loadRace, loadWaterfall } from 'redux/modules/info';
+import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import * as einfoActions from 'redux/modules/einfo';
 
 import { Context, CounterButton } from 'components';
@@ -76,22 +78,26 @@ export default connect(
 
 @connect(
   state => ({
+    user: state.auth.user,
     info: state.info,
     einfo: state.einfoNewName
   }),
-  {loadInfo, loadAll, loadRace, loadWaterfall, ...einfoActions}
+  {loadInfo, loadAll, loadRace, loadWaterfall, ...einfoActions, logout, pushState}
 )
 
 export default class App extends Component {
 
   static propTypes = {
+    user: PropTypes.object,
     children: PropTypes.any,
     info: PropTypes.object,
     loadInfo: PropTypes.func.isRequired,
     loadEinfo: PropTypes.func.isRequired,
     loadAll: PropTypes.func.isRequired,
     loadRace: PropTypes.func.isRequired,
-    loadWaterfall: PropTypes.func.isRequired
+    loadWaterfall: PropTypes.func.isRequired,
+    pushState: PropTypes.func.isRequired,
+    logout: PropTypes.func
   };
 
   static contextTypes = {
@@ -122,9 +128,28 @@ export default class App extends Component {
 
   }
 
-  triggerLoadInfo = () => {
+
+  // 透過redux state redirect route的工作，請在這裡進行
+  componentWillReceiveProps(nextProps) {
+
+    if (!this.props.user && nextProps.user) {
+      // login
+      this.props.pushState(null, '/about');
+    }
+
+  }
+
+
+  triggerLoadInfo() {
     this.props.loadInfo();
     //this.props.loadEinfo();
+  }
+
+  handleLogout(param, event) {
+    console.log('param ', param);
+    console.log('event ', event);
+    //event.preventDefault();
+    this.props.logout();
   }
 
   render() {
@@ -141,7 +166,7 @@ export default class App extends Component {
 
     //console.log('this.context', this.context);
 
-    const {info} = this.props;
+    const {info, user} = this.props;
 
     return (
       <div className={styles.app}>
@@ -155,6 +180,8 @@ export default class App extends Component {
               <ul className="nav navbar-nav">
                 <li><Link to="about">About</Link></li>
                 <li><Link to="chart">Chart</Link></li>
+                {!user && <li><Link to="login">Login</Link></li>}
+                {user && <li><a href="#" onClick={this.handleLogout.bind(this, 'aaa')}>logout</a></li>}
               </ul>
             </div>
         </nav>

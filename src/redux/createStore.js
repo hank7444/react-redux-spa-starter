@@ -11,7 +11,7 @@ const history = createHistory({
   queryKey: false
 });
 
-export default function createStore(data) {
+export default function createStore(initialState) {
 
   const middleware = [clientMiddleware(apiClient, waterfall)];
   let finalCreateStore;
@@ -31,7 +31,7 @@ export default function createStore(data) {
   finalCreateStore = reduxReactRouter({getRoutes, history})(finalCreateStore);
 
   const reducer = require('./modules/reducer');
-  const store = finalCreateStore(reducer, data);
+  const store = finalCreateStore(reducer, initialState);
 
   return store;
 }
