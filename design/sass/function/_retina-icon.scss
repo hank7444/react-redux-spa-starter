@@ -1,0 +1,16 @@
+//Sprite mixin, works perfectly with standard defines
+@mixin retina-icon($normal, $retina) {
+    background-image: image-url($normal, false, false);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    display: inline-block;
+    height: image-height($normal);
+    width: image-width($normal);
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+        background-image: image-url($retina, false, false);
+        background-size: (image-width($retina) / 2) (image-height($retina) / 2);
+        height: image-height($retina) / 2 + 1;
+        width: image-width($retina) / 2 + 1;
+    }
+}

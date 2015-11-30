@@ -2,20 +2,19 @@
 @import "breakpoint";
 
 @import "./variable/responsive";
-
-@import "./function/retina-sprites";
+@import "./function/retina-icon";
 @import "./function/background-image";
-@import "./function/retina-background-image";
+@import "./function/retina-background";
 
 
 .icon-readme {
-  @include use-sprite("readme_title");
+  @include retina-icon("readme_title", "png");
 }
 
 .icon-fb {
-  @include use-sprite("btn_fb_s");
+  @include retina-icon("btn_fb", "png");
 }
 
 .bg-action2 {
-  @include background-retina("action_2_w.png", "action_2_w_2x.png", 0 0, no-repeat, 100% 100%);
+  @include retina-background("action_2_w.png", "action_2_w_2x.png", 0 0, no-repeat, 100% 100%);
 }
