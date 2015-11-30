@@ -4,6 +4,7 @@ import * as authActions from 'redux/modules/auth';
 import reactMixin from 'react-mixin';
 import { Lifecycle } from 'react-router';
 import { TickTock } from 'components';
+import {NoFooter as Layout} from 'layouts';
 
 @connect(
   state => ({
@@ -54,19 +55,21 @@ class Login extends Component {
     console.log('this.props Login', this.props);
 
     return (
-      <div>
-        <h1>Login</h1>
-        <TickTock/>
-
+      <Layout>
         <div>
-          <form className="login-form">
-            <input type="text" ref="username" placeholder="Enter a username"/>
-            <button className="btn btn-success" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
-            </button>
-          </form>
-          <p>This will "log you in" as this user, storing the username in the session of the API server.</p>
+          <h1>Login</h1>
+          <TickTock/>
+
+          <div>
+            <form className="login-form">
+              <input type="text" ref="username" placeholder="Enter a username"/>
+              <button className="btn btn-success" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
+              </button>
+            </form>
+            <p>This will "log you in" as this user, storing the username in the session of the API server.</p>
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

@@ -1,0 +1,54 @@
+%svg-common {
+	background: url(../img/svg-sprite-a53199ed.svg) no-repeat;
+}
+
+.svgaccupassMobileTest {
+	@extend %svg-common;
+	background-position: 0 0;
+}
+
+.svgaccupassMobileTestDims {
+	width: 220.89px;
+	height: 48.631px;
+}
+
+.svgaccuvallyInc {
+	@extend %svg-common;
+	background-position: 90.15918367346939% 82.19895287958116%;
+}
+
+.svgaccuvallyIncDims {
+	width: 141px;
+	height: 27px;
+}
+
+.svgclose {
+	@extend %svg-common;
+	background-position: 99.69421487603306% 80.51282051282051%;
+}
+
+.svgcloseDims {
+	width: 23px;
+	height: 23px;
+}
+
+.svgfeaturesGraphic1 {
+	@extend %svg-common;
+	background-position: 0 99.24693877551022%;
+}
+
+.svgfeaturesGraphic1Dims {
+	width: 161px;
+	height: 169px;
+}
+
+.svgfeaturesGraphic2 {
+	@extend %svg-common;
+	background-position: 99.9502262443439% 0;
+}
+
+.svgfeaturesGraphic2Dims {
+	width: 165px;
+	height: 157px;
+}
+

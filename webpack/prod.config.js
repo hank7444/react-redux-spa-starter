@@ -6,7 +6,7 @@ var CleanPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var strip = require('strip-loader');
 
-var relativeAssetsPath = '../dist';
+var relativeAssetsPath = '../static/dist';
 var assetsPath = path.join(__dirname, relativeAssetsPath);
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
   output: {
     path: assetsPath,
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/static/dist/'
   },
   module: {
     loaders: [

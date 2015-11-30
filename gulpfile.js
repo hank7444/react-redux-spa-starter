@@ -6,10 +6,12 @@ var plumber = require('gulp-plumber');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
 var concat = require('gulp-concat');
-
+var path = require('path');
+var replace = require('gulp-replace');
 
 // css
 var minifyCSS = require('gulp-minify-css');
+var modifyCssUrls = require('gulp-modify-css-urls');
 
 // ejs
 var ejs = require('gulp-ejs');
@@ -22,6 +24,7 @@ var imagemin = require('gulp-imagemin');
 var imageminPngcrush = require('imagemin-pngcrush');
 
 var reload = browserSync.reload;
+var absolutePath = path.resolve(__dirname);
 
 // path
 var rootPath = 'design';
@@ -36,7 +39,10 @@ var filefolder = {
       '!' + rootPath + '/img/png-sprite/**/*',
       '!' + rootPath + '/img/png-sprite-2x/**/*'
     ],
-    'svg': rootPath + '/img/**/*.svg',
+    'svg': {
+      'sprite': rootPath + '/img/svg-sprite/**/*.svg',
+      'temp': rootPath + '/svgSpriteTemp/'
+    },
     'move': [
       rootPath + '/img/**/*.svg',
       rootPath + '/img/**/*.ico'
@@ -140,27 +146,84 @@ gulp.task('move-css', function() {
 });
 
 
-
 //gulp.src('**/*.svg', {cwd: 'path/to/assets'})
 // svg sprite
-gulp.task('svg-sprite', function() {
+// svg file please naming by Camel-Case  ex: ThisMySVGFile -> svgThisMySVGFile
+gulp.task('svg-sprite-gen', function() {
 
   var config = {
+    shape: {
+      id: {
+        separator: ''
+      }
+    },
     mode: {
-      css: { // Activate the «css» mode
+      css: {
+        dest: 'svgSpriteTemp',
+        prefix: '.svg',
+        sprite: 'svg-sprite.svg',
+        dimensions: 'Dims',
         render: {
-          css: true // 產生對應的css檔案
-        }
+          //css: true,
+          scss: {
+            dest: '_svgSprite.scss'
+          }
+        },
+        bust: true,
+        example: false
       }
     }
   };
 
-  gulp.src(filefolder.img.svg)
+  return gulp.src(filefolder.img.svg.sprite)
       .pipe(plumber())
       .pipe(svgSprite(config))
-      .pipe(gulp.dest(destPath + '/img'))
+      .pipe(gulp.dest(rootPath))
       .on('error', gutil.log);
+
 });
+
+
+gulp.task('svg-sprite-move', ['svg-sprite-gen'], function() {
+
+  // 將舊的svg sprite檔案刪掉
+  gulp.src(rootPath + '/img/*.svg')
+      .pipe(plumber())
+      .pipe(clean({
+        force: true
+      }))
+      .on('error', gutil.log);
+
+  // move svg sprite to design/img
+  gulp.src(filefolder.img.svg.temp + '*.svg')
+      .pipe(plumber())
+      .pipe(gulp.dest(rootPath + '/img'))
+      .on('error', gutil.log);
+
+
+  // move svg scss to design/sass, and modify url path
+  gulp.src(filefolder.img.svg.temp + '*.scss')
+      .pipe(plumber())
+      .pipe(replace(/(svg-sprite-.*\.svg)/g, '../img/$1'))
+      .pipe(gulp.dest(rootPath + '/sass'))
+      .on('error', gutil.log);
+
+
+  // remove /svgSpriteTemp
+  return gulp.src(filefolder.img.svg.temp)
+      .pipe(plumber())
+      .pipe(clean({
+        force: true
+      }))
+      .on('error', gutil.log);
+
+});
+
+
+gulp.task('svg-sprite-watch', function() {
+  gulp.watch(filefolder.img.svg.sprite, ['svg-sprite-move']);
+});
+
 
 // 壓縮圖片
 gulp.task('minify-img', function() {

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {loadWaterfall} from 'redux/modules/info';
-
+import {Normal as Layout} from 'layouts';
 /*
 @connect(
   state => ({}),
@@ -29,9 +29,11 @@ class Home extends Component {
   render() {
 
     return (
-      <div>
-        <h1>Home Hello World!</h1>
-      </div>
+      <Layout>
+        <div>
+          <h1>Home Hello World!</h1>
+        </div>
+      </Layout>
     );
   }
 }

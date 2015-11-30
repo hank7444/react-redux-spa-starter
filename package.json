@@ -121,6 +121,7 @@
     "gulp-imagemin": "^2.4.0",
     "gulp-minify-css": "^1.2.1",
     "gulp-plumber": "^1.0.1",
+    "gulp-replace": "^0.5.4",
     "gulp-svg-sprite": "^1.2.15",
     "gulp-util": "^3.0.7",
     "imagemin-pngcrush": "^4.1.0",

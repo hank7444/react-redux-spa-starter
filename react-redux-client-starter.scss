@@ -1,0 +1,44 @@
+%svg-common {
+	background: url(svg-sprite-a2b08bd7.svg) no-repeat;
+}
+
+accupassMobile {
+	@extend %svg-common;
+	background-position: 0 0;
+}
+
+accupassMobileDims {
+	width: 220.89px;
+	height: 48.631px;
+}
+
+accuvallyInc {
+	@extend %svg-common;
+	background-position: 90.15918367346939% 82.19895287958116%;
+}
+
+accuvallyIncDims {
+	width: 141px;
+	height: 27px;
+}
+
+featuresGraphic1 {
+	@extend %svg-common;
+	background-position: 0 99.24693877551022%;
+}
+
+featuresGraphic1Dims {
+	width: 161px;
+	height: 169px;
+}
+
+featuresGraphic2 {
+	@extend %svg-common;
+	background-position: 99.9502262443439% 0;
+}
+
+featuresGraphic2Dims {
+	width: 165px;
+	height: 157px;
+}
+

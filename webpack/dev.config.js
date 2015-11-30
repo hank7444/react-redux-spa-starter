@@ -2,7 +2,7 @@ require('babel-core/polyfill');
 var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
-var assetsPath = path.resolve(__dirname, '../dist');
+var assetsPath = path.resolve(__dirname, '../static/dist');
 var host = 'localhost';
 var port = 3000;
 
@@ -50,7 +50,7 @@ module.exports = {
   output: {
     path: assetsPath,
     filename: 'bundle.js',
-    publicPath: 'http://' + host + ':' + port + '/dist/'
+    publicPath: 'http://' + host + ':' + port + '/static/dist/'
   },
   module: {
     loaders: [
