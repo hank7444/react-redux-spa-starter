@@ -3,18 +3,17 @@
 
 @import "./variable/responsive";
 @import "./function/retina-icon";
-@import "./function/background-image";
 @import "./function/retina-background";
-
+@import "./function/background-image";
 
 .icon-readme {
   @include retina-icon("readme_title", "png");
 }
 
 .icon-fb {
-  @include retina-icon("btn_fb", "png");
+  @include retina-icon("btn_fb_s", "png");
 }
 
 .bg-action2 {
-  @include retina-background("action_2_w.png", "action_2_w_2x.png", 0 0, no-repeat, 100% 100%);
+  @include retina-background("action_2_w", "png", 0 0, no-repeat, 100% 100%);
 }

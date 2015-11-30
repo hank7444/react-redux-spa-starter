@@ -9,13 +9,13 @@
  * 3. include the background-image property in your Sass/Scss using: '@include background-retina(<ratio-1-imagefile>, <ratio-2-imagefile>)'
  */
 
-@mixin retina-background($normal, $retina, $pos: center, $repeat: no-repeat, $size: true, $contain: false) {
-    background-image: image-url($normal, false, false);
+@mixin retina-background($file, $type, $pos: center, $repeat: no-repeat, $size: true, $contain: false) {
+    background-image: image-url($file + '.' + $type, false, false);
     background-repeat: $repeat;
     background-position: $pos;
     background-size: $size;
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-        background-image: image-url($retina, false, false);
+        background-image: image-url($file + '_2x.' + $type, false, false);
         background-repeat: $repeat;
         background-position: $pos;
         @if $size != true {
@@ -25,7 +25,7 @@
             @if $contain == true {
                 background-size: contain;
             } @else  {
-                background-size: (image-width($retina) / 2) (image-height($retina) / 2);
+                background-size: (image-width($file + '_2x.' + $type) / 2) (image-height($file + '_2x.' + $type) / 2);
             }
         }
     }

@@ -1,16 +1,16 @@
 //Sprite mixin, works perfectly with standard defines
-@mixin retina-icon($normal, $retina) {
-    background-image: image-url($normal, false, false);
+@mixin retina-icon($file, $type) {
+    background-image: image-url($file + '.' + $type, false, false);
     background-repeat: no-repeat;
     overflow: hidden;
     display: inline-block;
-    height: image-height($normal);
-    width: image-width($normal);
+    height: image-height($file + '.' + $type);
+    width: image-width($file + '.' + $type);
 
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-        background-image: image-url($retina, false, false);
-        background-size: (image-width($retina) / 2) (image-height($retina) / 2);
-        height: image-height($retina) / 2 + 1;
-        width: image-width($retina) / 2 + 1;
+        background-image: image-url($file + '_2x.' + $type, false, false);
+        background-size: (image-width($file + '_2x.' + $type) / 2) (image-height($file + '_2x.' + $type) / 2);
+        height: image-height($file + '_2x.' + $type) / 2 + 1;
+        width: image-width($file + '_2x.' + $type) / 2 + 1;
     }
 }
