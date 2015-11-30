@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as authActions from 'redux/modules/auth';
 import reactMixin from 'react-mixin';
 import { Lifecycle } from 'react-router';
+import { TickTock } from 'components';
 
 @connect(
   state => ({
@@ -55,6 +56,7 @@ class Login extends Component {
     return (
       <div>
         <h1>Login</h1>
+        <TickTock/>
 
         <div>
           <form className="login-form">

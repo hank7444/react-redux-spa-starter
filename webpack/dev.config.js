@@ -4,7 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 var assetsPath = path.resolve(__dirname, '../dist');
 var host = 'localhost';
-var port = 3030;
+var port = 3000;
 
 var babelrc = fs.readFileSync('./.babelrc');
 var babelrcObject = {};
@@ -54,10 +54,11 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.(jpe?g|png|gif|svg)$/, loader: 'url', query: {limit: 40960}},
-      {test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'},
       {test: /\.js$/, exclude: /node_modules/, loaders: ['babel?' + JSON.stringify(babelLoaderQuery)]},
       {test: /\.json$/, loader: 'json-loader'},
+      {test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'},
+      {test: /\.css$/, loader: 'style-loader!css-loader'},
+      {test: /\.(jpe?g|png|gif|svg)$/, loader: 'url', query: {limit: 1}} // // 當圖片大小小於 xk 時使用 base64 URL, 其餘使用直接連接到圖片的 URL
     ]
   },
   progress: true,

@@ -10,12 +10,12 @@
  */
 
 @mixin background-retina($normal, $retina, $pos: center, $repeat: no-repeat, $size: true, $contain: false) {
-    background-image: image-url($normal);
+    background-image: image-url($normal, false, false);
     background-repeat: $repeat;
     background-position: $pos;
     background-size: $size;
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-        background-image: image-url($retina);
+        background-image: image-url($retina, false, false);
         background-repeat: $repeat;
         background-position: $pos;
         @if $size != true {

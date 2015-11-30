@@ -2,8 +2,8 @@
 @import "breakpoint";
 @import "susy";
 
-@import "../variable/color";
-@import "../variable/responsive";
+@import "./variable/color";
+@import "./variable/responsive";
 
 // 直接定義box model用border-box
 @include border-box-sizing;

@@ -20,14 +20,15 @@ module.exports = {
   output: {
     path: assetsPath,
     filename: 'bundle.js',
-    publicPath: '/lib/'
+    publicPath: '/dist/'
   },
   module: {
     loaders: [
-      {test: /\.(jpe?g|png|gif|svg)$/, loader: 'url', query: {limit: 40960}},
-      {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap')},
       {test: /\.js$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel']},
-      {test: /\.json$/, loader: 'json-loader'}
+      {test: /\.json$/, loader: 'json-loader'},
+      {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap')},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
+      {test: /\.(jpe?g|png|gif|svg)$/, loader: 'url', query: {limit: 1}}
     ]
   },
   progress: true,

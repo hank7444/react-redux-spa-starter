@@ -8,6 +8,9 @@ import createStore from './redux/createStore';
 import getRoutes from './routes';
 
 
+// 切板完成後的css放在這
+import 'style/css/bundle.css';
+
 // default的redux state
 const initialState = {};
 const store = createStore(initialState);

@@ -5,20 +5,27 @@ var browserSync = require('browser-sync');
 var plumber = require('gulp-plumber');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
+var concat = require('gulp-concat');
+
+
+// css
+var minifyCSS = require('gulp-minify-css');
 
 // ejs
 var ejs = require('gulp-ejs');
 
+// svg
+var svgSprite = require('gulp-svg-sprite');
+
 // images
 var imagemin = require('gulp-imagemin');
-var pngcrush = require('imagemin-pngcrush');
-
+var imageminPngcrush = require('imagemin-pngcrush');
 
 var reload = browserSync.reload;
 
 // path
 var rootPath = 'design';
-var destPath = 'static';
+var destPath = 'src/style';
 var filefolder = {
   'img': {
     'all': [rootPath + '/img/**/*'],
@@ -26,10 +33,10 @@ var filefolder = {
       rootPath + '/img/**/*.png',
       rootPath + '/img/**/*.jpg',
       rootPath + '/img/**/*.gif',
-      '!' + rootPath + '/img/icons/**/*',
-      '!' + rootPath + '/img/icons-2x/**/*'
+      '!' + rootPath + '/img/png-sprite/**/*',
+      '!' + rootPath + '/img/png-sprite-2x/**/*'
     ],
-    'svg': '/img/svg/**/*.svg',
+    'svg': rootPath + '/img/**/*.svg',
     'move': [
       rootPath + '/img/**/*.svg',
       rootPath + '/img/**/*.ico'
@@ -47,7 +54,7 @@ var filefolder = {
     'all': [rootPath + '/css/**/*.css'],
     'bundle': [
       rootPath + '/css/global/normalize.css',
-      rootPath + '/css/bundle.css'
+      rootPath + '/css/main.css'
     ]
   },
   'sass': rootPath + '/sass/**/*.{sass, scss}'
@@ -55,68 +62,68 @@ var filefolder = {
 
 // file state
 var watchStatus = {
-  'isAdded': function(file) {
-    return file.event === 'added';
-  },
-  'isChanged': function(file) {
-    return file.event == 'changed';
-  },
-  'isDeleted': function(file) {
-    return file.event == 'deleted';
-  },
-  'isNotDeleted': function(file) {
-    return file.event != 'deleted';
-  }
+    'isAdded': function(file) {
+        return file.event === 'added';
+    },
+    'isChanged': function(file) {
+        return file.event == 'changed';
+    },
+    'isDeleted': function(file) {
+        return file.event == 'deleted';
+    },
+    'isNotDeleted': function(file) {
+        return file.event != 'deleted';
+    }
 };
 
 
 // gulp tasks
 gulp.task('browser-sync', function() {
 
-  var syncAry = filefolder.img.all.concat(filefolder.css.all).concat(filefolder.html.all);
+    var syncAry = filefolder.img.all.concat(filefolder.css.all).concat(filefolder.html.all);
 
-  gulp.watch(syncAry, reload);
+    gulp.watch(syncAry, reload);
 
-  return browserSync({
-    server: {
-      baseDir: './',
-      directory: true
-    },
-    debugInfo: false,
-    open: false,
-    browser: ["google chrome", "firefox"],
-    injectChanges: true,
-    notify: true,
-    ghostMode: false
-  });
+    return browserSync({
+        server: {
+            baseDir: './',
+            directory: true
+        },
+        debugInfo: false,
+        open: false,
+        browser: ["google chrome", "firefox"],
+        injectChanges: true,
+        notify: true,
+        ghostMode: false
+    });
 });
 
 gulp.task('ejs-watch', function() {
-  gulp.watch(filefolder.ejs.all, function(e) {
+    gulp.watch(filefolder.ejs.all, function(e) {
 
-    if (e.type !== 'deleted') {
+        if (e.type !== 'deleted') {
 
-      /*
+            /*
       var configGlobal = JSON.parse(fs.readFileSync(filefolder.config.configGlobal));
       var configDev = JSON.parse(fs.readFileSync(filefolder.config.configDev));
       var configEjs = JSON.parse(fs.readFileSync(filefolder.config.ejsData));
       var config = extend(configEjs, configDev, configGlobal, {});
       */
 
-      gulp.src(filefolder.ejs.all)
-          .pipe(plumber())
-          .pipe(ejs())
-          .on('error', gutil.log)
-          .pipe(gulp.dest(filefolder.html.dest))
-          .pipe(reload({
-            stream: true
-          }));
+            gulp.src(filefolder.ejs.all)
+                .pipe(plumber())
+                .pipe(ejs())
+                .on('error', gutil.log)
+                .pipe(gulp.dest(filefolder.html.dest))
+                .pipe(reload({
+                    stream: true
+                }));
 
-      gulp.src(filefolder.ejs.removeHtmlEjs)
-          .pipe(clean());
+            gulp.src(filefolder.ejs.removeHtmlEjs)
+                .pipe(clean());
 
-    }
-  });
+        }
+    });
 });
 
 
@@ -124,53 +131,73 @@ gulp.task('ejs-watch', function() {
 // 合併global.css並壓縮複製所有/css到/dist/mobile/css
 gulp.task('move-css', function() {
 
-  var cssfile = filefolder.css.bundle;
+    var cssfile = filefolder.css.bundle;
 
-  gulp.src(cssfile)
+    gulp.src(cssfile)
+        .pipe(plumber())
+        .pipe(concat('bundle.css'))
+        .pipe(gulp.dest(destPath + '/css'));
+});
+
+
+
+//gulp.src('**/*.svg', {cwd: 'path/to/assets'})
+// svg sprite
+gulp.task('svg-sprite', function() {
+
+  var config = {
+    mode: {
+      css: { // Activate the «css» mode
+        render: {
+          css: true // 產生對應的css檔案
+        }
+      }
+    }
+  };
+
+  gulp.src(filefolder.img.svg)
       .pipe(plumber())
-      .pipe(concat('bundle.css'))
-      .pipe(minifyCSS({
-          keepBreaks: true
-      }))
-      .pipe(gulp.dest(destPath + '/css'));
+      .pipe(svgSprite(config))
+      .pipe(gulp.dest(destPath + '/img'))
+      .on('error', gutil.log);
 });
 
 // 壓縮圖片
 gulp.task('minify-img', function() {
 
-  gulp.src(filefolder.img.compress)
-      .pipe(imagemin({
-        optimizationLevel: 3,
-        progressive: true,
-        svgoPlugins: [{
-          removeViewBox: false
-        }],
-        use: [pngcrush()]
-      }))
-      .pipe(gulp.dest(destPath + '/img'))
-      .on('error', gutil.log);
+    gulp.src(filefolder.img.compress)
+        .pipe(imagemin({
+            optimizationLevel: 3,
+            progressive: true,
+            svgoPlugins: [{
+              removeViewBox: false
+            }],
+            use: [imageminPngcrush()]
+        }))
+        .pipe(gulp.dest(destPath + '/img'))
+        .on('error', gutil.log);
 
-  return gulp.src(filefolder.img.move)
-      .pipe(gulp.dest(destPath + '/img'))
-      .on('error', gutil.log);
+    return gulp.src(filefolder.img.move)
+        .pipe(gulp.dest(destPath + '/img'))
+        .on('error', gutil.log);
 });
 
 
 // clean script
 gulp.task('clean', function() {
-  return gulp.src([destPath + '/css'], {
-    read: false
-  }).pipe(clean({
-    force: true
-  }));
+    return gulp.src([destPath + '/css'], {
+        read: false
+    }).pipe(clean({
+        force: true
+    }));
 });
 
 gulp.task('clean-img', function() {
-  return gulp.src([destPath + '/img'], {
-    read: false
-  }).pipe(clean({
-    force: true
-  }));
+    return gulp.src([destPath + '/img'], {
+        read: false
+    }).pipe(clean({
+        force: true
+    }));
 });
 gulp.task('clean-all', ['clean', 'clean-img']);
 
@@ -181,10 +208,10 @@ gulp.task('design', ['browser-sync', 'ejs-watch']);
 
 // 將design檔案轉到server資料夾內
 gulp.task('dist', function(cb) {
-  runSequence('clean', 'move-css');
+    runSequence('clean', 'move-css');
 });
 
 // 將design檔案轉到server資料夾內, 加圖片, depoly時應該都要跑過一遍, 確保design的檔案都有同步到server
 gulp.task('dist-img', function(cb) {
-  runSequence('clean-all', 'minify-img', 'move-css');
+    runSequence('clean-all', 'minify-img', 'move-css');
 });

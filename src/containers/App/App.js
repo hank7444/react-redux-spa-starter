@@ -8,8 +8,7 @@ import { isLoaded as isInfoLoaded, load as loadInfo, loadAll, loadRace, loadWate
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import * as einfoActions from 'redux/modules/einfo';
 
-import { Context, CounterButton } from 'components';
-
+import { Context, CounterButton, DumbTest, TickTock } from 'components';
 
 /*
 這邊將react與redux進行連接的動作，
@@ -81,7 +80,8 @@ export default connect(
     user: state.auth.user,
     info: state.info,
     einfo: state.einfoNewName,
-    router: state.router
+    router: state.router,
+    counter: state.counter
   }),
   {loadInfo, loadAll, loadRace, loadWaterfall, ...einfoActions, logout, pushState}
 )
@@ -99,7 +99,8 @@ export default class App extends Component {
     loadWaterfall: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired,
     logout: PropTypes.func,
-    router: PropTypes.object
+    router: PropTypes.object,
+    counter: PropTypes.object
   };
 
   static contextTypes = {
@@ -112,6 +113,13 @@ export default class App extends Component {
     param: PropTypes.string
   };
 
+
+  constructor() {
+    super();
+    this.state = {
+      val: 0
+    };
+  }
 
   // 設定要透過context往child component傳的參數
   getChildContext() {
@@ -127,6 +135,25 @@ export default class App extends Component {
     //this.props.loadAll();
     //this.props.loadRace();
     this.props.loadWaterfall();
+
+
+    /*
+    this.setState({val: this.state.val + 1}); 0
+    console.log(this.state.val);    // 第 1 次 log
+
+    this.setState({val: this.state.val + 1}); 0
+    console.log(this.state.val);    // 第 2 次 log
+
+    setTimeout(() => {
+      this.setState({val: this.state.val + 1}); 2
+      console.log(this.state.val);  // 第 3 次 log
+
+      this.setState({val: this.state.val + 1}); 3
+      console.log(this.state.val);  // 第 4 次 log
+    }, 0);
+
+    */
+
   }
 
 
@@ -181,18 +208,31 @@ export default class App extends Component {
   render() {
     const styles = require('./App.scss');
 
+    console.log('reder App');
+
+
+    /*
+    const staticStyles = require('style/css/bundle.css');
+    const testCssStyles = require('style/css/test.css');
+
+    console.log('staticStyles', staticStyles);
+    console.log('testCssStyles', testCssStyles);
+    console.log('testStyles', testStyles);
+    */
+
+
     // 可以觀察到，當triggerLoadInfo一呼叫，讓redux store改變後，react會重新rerender畫面
 
-    console.log('this.props', this.props);
+    //console.log('this.props', this.props);
 
     /*
       this.context是很妙的屬性，可以讓child component拿到parent component設定的值而不需
       將值傳入child component中
     */
 
-    console.log('this.context', this.context);
+    //console.log('this.context', this.context);
 
-    const {info, user} = this.props;
+    const {info, user, counter} = this.props;
 
     return (
       <div className={styles.app}>
@@ -214,10 +254,25 @@ export default class App extends Component {
 
         <div className={styles.appContent}>
 
+          <div>
+            counter: {counter.count}
+          </div>
+
           <Context/>
 
           <CounterButton/>
 
+          <DumbTest/>
+
+          <i className="icon-fb"></i>
+
+          <div className="bg-action2">
+            <h1>test retina bg</h1>
+          </div>
+
+          {/*
+          <i className={staticStyles.iconFb}></i>
+          */}
 
           <br/>
 

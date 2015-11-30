@@ -7,7 +7,6 @@ const initialState = {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case INCREMENT:
-      console.log('#######');
       const {count} = state;
       return {
         count: count + 1

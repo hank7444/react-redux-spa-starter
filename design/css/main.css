@@ -1,0 +1,252 @@
+@charset "UTF-8";
+/*
+ * Retina Sprites for Compass
+ * by:              Gaya Kessler
+ * last update:     03/11/14
+ *
+ * Usage:
+ * 1. create two folders in your image directory (in this case 'icons' and 'icons-2x').
+ * 2. adjust the foldernames defined below if you use different names.
+ * 3. create sprite images for pixel ratio 1 screens and put them in the first folder.
+ * 4. create sprite images for pixel ratio 2 screens and put them in the second folder, use the same filenames.
+ * 5. use the sprite-image in your Sass/Scss using: '@include use-sprite(<sprite-name>)'
+ */
+/*
+ * Retina Backgrounds for Compass
+ * by:              Gaya Kessler
+ * last update:     03/11/14
+ *
+ * Usage:
+ * 1. create background image for pixel ratio 1 screens and put it somewhere in your images folder.
+ * 2. create background image for pixel ratio 2 screens and put it somewhere in your images folder.
+ * 3. include the background-image property in your Sass/Scss using: '@include background-retina(<ratio-1-imagefile>, <ratio-2-imagefile>)'
+ */
+.icon-readme {
+  background-image: url('../img/png-sprite-s5d4bc4afb5.png');
+  background-position: -44px 0;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: inline-block;
+  height: 50px;
+  width: 159px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .icon-readme {
+    background-repeat: no-repeat;
+    background-image: url('../img/png-sprite-2x-se3da45a269.png');
+    background-size: 203px 50.5px;
+    background-position: -41px 0;
+    height: 51.5px;
+    width: 160px;
+  }
+}
+
+.icon-fb {
+  background-image: url('../img/png-sprite-s5d4bc4afb5.png');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: inline-block;
+  height: 38px;
+  width: 39px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .icon-fb {
+    background-repeat: no-repeat;
+    background-image: url('../img/png-sprite-2x-se3da45a269.png');
+    background-size: 203px 50.5px;
+    background-position: 0 0;
+    height: 39px;
+    width: 40px;
+  }
+}
+
+.bg-action2 {
+  background-image: url('../img/action_2_w.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 100%;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .bg-action2 {
+    background-image: url('../img/action_2_w_2x.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100% 100%;
+  }
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+a {
+  color: white;
+}
+a:focus, a:hover {
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+html, body {
+  font-family: STHeitiTC-Light, "蘋果儷中黑", "微軟正黑體", Arial, sans-serif, "新細明體";
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  background-color: #ffb426;
+}
+
+@-moz-document url-prefix() {
+  html, body {
+    font-family: Arial, "微軟正黑體", "蘋果儷中黑", sans-serif, "新細明體";
+  }
+}
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 white;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.seo {
+  display: none;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.visible-mobile {
+  display: none;
+}
+
+.break {
+  display: none;
+}
+
+.bg {
+  background-color: #ffb426;
+}
+
+.no-bg {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.bg-gradient {
+  height: auto;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSI1JSIgc3RvcC1jb2xvcj0iI2ZjZWQ2MyIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjZmZiNDI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(5%, #fced63), color-stop(50%, #ffb426));
+  background: -moz-linear-gradient(#fced63 5%, #ffb426 50%);
+  background: -webkit-linear-gradient(#fced63 5%, #ffb426 50%);
+  background: linear-gradient(#fced63 5%, #ffb426 50%);
+}
+
+.root-wrap {
+  position: relative;
+  max-width: 768px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.header-wrap {
+  height: 60px;
+}
+
+.header {
+  position: fixed;
+  z-index: 550;
+  width: 100%;
+  height: 60px;
+  max-width: 768px;
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+  background-color: #0088d2;
+  border: 0;
+}
+
+.header-btn-menu {
+  display: inline-block;
+  float: left;
+  margin-left: 16px;
+  margin-top: 20px;
+}
+
+.header-logo {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.header-btn-share {
+  display: inline-block;
+  float: right;
+  margin-right: 16px;
+  margin-top: 13px;
+}
+
+.header-menu {
+  color: blue;
+}
+
+.sidemenu {
+  position: fixed;
+  top: 60px;
+  z-index: 100;
+  display: none;
+  width: 240px;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #333333;
+}
+.sidemenu.menu-open {
+  display: block;
+}
+
+.sidemenu-title {
+  display: block;
+  padding: 15px;
+  font-size: 16;
+  line-height: 2em;
+}
+
+.sidemenu-category-title {
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #727272;
+  background-color: #414141;
+}
+
+.sidemenu-category-item {
+  display: block;
+  padding: 15px;
+  font-size: 16px;
+  color: white;
+  border-bottom: 1px solid #414141;
+}
+
+.footer {
+  width: 100%;
+  min-height: 40px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5em;
+  text-align: center;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-ul {
+  margin-top: 11px;
+}
+
+.footer-li {
+  display: inline-block;
+  margin-right: 21px;
+}
