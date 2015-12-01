@@ -127,6 +127,8 @@
     "gulp-svg-sprite": "^1.2.15",
     "gulp-util": "^3.0.7",
     "imagemin-pngcrush": "^4.1.0",
+    "jquery": "^2.1.4",
+    "jquery-ui": "^1.10.5",
     "karma-chrome-launcher": "^0.2.1",
     "karma-cli": "^0.1.1",
     "karma-firefox-launcher": "^0.1.7",

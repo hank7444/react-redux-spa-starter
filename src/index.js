@@ -11,6 +11,9 @@ import getRoutes from './routes';
 // 切板完成後的css放在這
 import 'style/css/bundle.css';
 
+// jquery-ui
+import 'jquery-ui/themes/flick/jquery-ui.min.css';
+
 // default的redux state
 const initialState = {};
 const store = createStore(initialState);

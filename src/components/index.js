@@ -6,3 +6,5 @@ export CounterButton from './CounterButton/CounterButton';
 export TickTock from './TickTock/TickTock';
 export Header from './Header/Header';
 export Footer from './Footer/Footer';
+export JqueryFadeIn from './JqueryFadeIn/JqueryFadeIn';
+export JqueryDraggable from './JqueryDraggable/JqueryDraggable';

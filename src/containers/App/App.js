@@ -8,7 +8,7 @@ import { isLoaded as isInfoLoaded, load as loadInfo, loadAll, loadRace, loadWate
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import * as einfoActions from 'redux/modules/einfo';
 
-import {InfoBar, Context, CounterButton, DumbTest, TickTock } from 'components';
+import {InfoBar, Context, CounterButton, DumbTest, TickTock, JqueryFadeIn, JqueryDraggable} from 'components';
 
 /*
 這邊將react與redux進行連接的動作，
@@ -117,7 +117,8 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      val: 0
+      val: 0,
+      isLoading: false
     };
   }
 
@@ -136,6 +137,9 @@ export default class App extends Component {
     //this.props.loadRace();
     this.props.loadWaterfall();
 
+    console.log('this.refs', this.refs);
+
+    //this.refs.loader.fadeIn();
 
     /*
     this.setState({val: this.state.val + 1}); 0
@@ -165,7 +169,6 @@ export default class App extends Component {
     const history = this.props.history;
     const nextRouter = nextProps.router;
 
-
     // 這邊測試route轉換前(從/login跳出時)先確認，但是url改變了....
     /*
     if (router.location.pathname === '/login' && nextRouter.location.pathname !== '/login') {
@@ -188,8 +191,24 @@ export default class App extends Component {
     const router = this.props.router;
     const nextRouter = nextProps.router;
 
-
     return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log("> componentWillUpdate(nextProps, nextState)");
+
+  }
+
+  fadeIn() {
+    this.setState({
+      isLoading: true
+    });
+  }
+
+  fadeOut() {
+    this.setState({
+      isLoading: false
+    });
   }
 
 
@@ -209,10 +228,13 @@ export default class App extends Component {
     const styles = require('./App.scss');
     const css = require('./appTest.css');
 
+    console.log('@@@@@@@@@@@@###### ', this.state);
+
+    /*
     console.log('reder App', styles);
     console.log('css ', css);
-
     console.log('css.appTest', css['app-test']);
+    */
 
     /*
     const staticStyles = require('style/css/bundle.css');
@@ -260,6 +282,13 @@ export default class App extends Component {
           <div className={styles.section4}>
             counter: {counter.count}
           </div>
+
+          <a onClick={this.fadeIn.bind(this)}>fadeIn</a>
+          <a onClick={this.fadeOut.bind(this)}>fadeOut</a>
+
+          <JqueryFadeIn ref="loader" isLoading={this.state.isLoading}/>
+
+          <JqueryDraggable/>
 
           <Context/>
 
