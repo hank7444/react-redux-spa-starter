@@ -50,6 +50,7 @@ if (__DEVELOPMENT__) {
   window.Perf = Perf;
 }
 
+
 ReactDOM.render(
   <Provider store={store}>
     <div>
@@ -58,3 +59,5 @@ ReactDOM.render(
   </Provider>,
   dest
 );
+
+

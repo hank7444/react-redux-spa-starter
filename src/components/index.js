@@ -1,3 +1,4 @@
+export AnimationTest from './AnimationTest/AnimationTest';
 export InfoBar from './InfoBar/InfoBar';
 export Context from './Context/Context';
 export SubContext from './SubContext/SubContext';

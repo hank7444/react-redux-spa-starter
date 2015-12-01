@@ -8,8 +8,8 @@ import { isLoaded as isInfoLoaded, load as loadInfo, loadAll, loadRace, loadWate
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import * as einfoActions from 'redux/modules/einfo';
 
-import {InfoBar, Context, CounterButton, DumbTest, TickTock, JqueryFadeIn, JqueryDraggable} from 'components';
-
+import {AnimationTest, InfoBar, Context, CounterButton, DumbTest, TickTock, JqueryFadeIn, JqueryDraggable} from 'components';
+import connectData from 'helpers/connectData';
 /*
 這邊將react與redux進行連接的動作，
 state => 為redux store的屬性,
@@ -74,7 +74,22 @@ export default connect(
 )(App);
 
 */
+function fetchData(getState, dispatch) {
+  const promises = [];
 
+  /*
+  if (!isInfoLoaded(getState())) {
+    promises.push(dispatch(loadInfo()));
+  }
+  if (!isAuthLoaded(getState())) {
+    promises.push(dispatch(loadAuth()));
+  }
+  */
+  //promises.push(dispatch(loadAuth()));
+  return Promise.all(promises.push(dispatch(loadWaterfall())));
+}
+
+@connectData(null, fetchData)
 @connect(
   state => ({
     user: state.auth.user,
@@ -135,13 +150,11 @@ export default class App extends Component {
     //this.props.loadInfo();
     //this.props.loadAll();
     //this.props.loadRace();
-    this.props.loadWaterfall();
+    //this.props.loadWaterfall();
 
-    console.log('this.refs', this.refs);
+    //console.log('this.refs', this.refs);
 
     //this.refs.loader.fadeIn();
-
-
 
     /*
     this.setState({val: this.state.val + 1}); 0
@@ -192,14 +205,11 @@ export default class App extends Component {
     const router = this.props.router;
     const nextRouter = nextProps.router;
 
-
-
     return true;
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log("> componentWillUpdate(nextProps, nextState)");
-
+    console.log('> componentWillUpdate(nextProps, nextState)');
   }
 
   fadeIn() {
@@ -291,6 +301,7 @@ export default class App extends Component {
           <a onClick={this.fadeOut.bind(this)}>fadeOut</a>
 
 
+          <AnimationTest/>
 
           <JqueryFadeIn ref="loader" isLoading={this.state.isLoading}/>
 
