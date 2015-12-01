@@ -1,3 +1,11 @@
-.myClass {
+.my-class {
   color: blue;
+}
+
+:local .app-test-local {
+    background-color: brown;
+}
+
+:global(.app-test-global) {
+    background-color: red;
 }

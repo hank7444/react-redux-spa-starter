@@ -36,8 +36,10 @@ var filefolder = {
       rootPath + '/img/**/*.png',
       rootPath + '/img/**/*.jpg',
       rootPath + '/img/**/*.gif',
+      rootPath + '/img/**/*.svg',
       '!' + rootPath + '/img/png-sprite/**/*',
-      '!' + rootPath + '/img/png-sprite-2x/**/*'
+      '!' + rootPath + '/img/png-sprite-2x/**/*',
+      '!' + rootPath + '/img/svg-sprite/**/*'
     ],
     'svg': {
       'sprite': rootPath + '/img/svg-sprite/**/*.svg',
@@ -45,7 +47,8 @@ var filefolder = {
     },
     'move': [
       rootPath + '/img/**/*.svg',
-      rootPath + '/img/**/*.ico'
+      rootPath + '/img/**/*.ico',
+      '!' + rootPath + '/img/svg-sprite'
     ]
   },
   'ejs': {
@@ -160,7 +163,7 @@ gulp.task('svg-sprite-gen', function() {
     mode: {
       css: {
         dest: 'svgSpriteTemp',
-        prefix: '.svg',
+        prefix: '.',
         sprite: 'svg-sprite.svg',
         dimensions: 'Dims',
         render: {
@@ -220,6 +223,8 @@ gulp.task('svg-sprite-move', ['svg-sprite-gen'], function() {
 });
 
 
+
+// 不一定要使用，webpack可設定將svg -> base64 encode
 gulp.task('svg-sprite-watch', function() {
   gulp.watch(filefolder.img.svg.sprite, ['svg-sprite-move']);
 });
@@ -240,9 +245,11 @@ gulp.task('minify-img', function() {
         .pipe(gulp.dest(destPath + '/img'))
         .on('error', gutil.log);
 
+    /*
     return gulp.src(filefolder.img.move)
         .pipe(gulp.dest(destPath + '/img'))
         .on('error', gutil.log);
+    */
 });
 
 
@@ -266,7 +273,7 @@ gulp.task('clean-all', ['clean', 'clean-img']);
 
 
 // gulp task scripts
-gulp.task('design', ['browser-sync', 'ejs-watch']);
+gulp.task('design', ['browser-sync', 'ejs-watch', 'svg-sprite-watch']);
 
 
 // 將design檔案轉到server資料夾內

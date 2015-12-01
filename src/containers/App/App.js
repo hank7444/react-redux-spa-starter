@@ -207,9 +207,12 @@ export default class App extends Component {
 
   render() {
     const styles = require('./App.scss');
+    const css = require('./appTest.css');
 
-    console.log('reder App');
+    console.log('reder App', styles);
+    console.log('css ', css);
 
+    console.log('css.appTest', css['app-test']);
 
     /*
     const staticStyles = require('style/css/bundle.css');
@@ -252,7 +255,7 @@ export default class App extends Component {
             </div>
         </nav>
 
-        <div className={styles.appContent}>
+        <div className={styles['app-content']}>
 
           <div className={styles.section4}>
             counter: {counter.count}

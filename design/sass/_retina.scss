@@ -7,13 +7,27 @@
 @import "./function/background-image";
 
 .icon-readme {
-  @include retina-icon("readme_title", "png");
+    @include retina-icon("readme_title", "png");
 }
 
 .icon-fb {
-  @include retina-icon("btn_fb_s", "png");
+    @include retina-icon("btn_fb_s", "png");
 }
 
 .bg-action2 {
-  @include retina-background("action_2_w", "png", 0 0, no-repeat, 100% 100%);
+    @include retina-background("action_2_w", "png", 0 0, no-repeat, 100% 100%);
+}
+
+
+.icon-accupass {
+    @include background-image("svg/accupass.svg");
+    display: block;
+    width: 137px;
+    height: 30px;
+}
+
+.icon-close {
+    @include background-image("svg/close.svg");
+    width: 23px;
+    height: 23px;
 }

@@ -16,6 +16,21 @@ $susy: (global-box-sizing: border-box, columns: 12, column-width: 36px, gutter-p
     @include span(4);
 }
 
-.appContent {
+.app-content {
   padding-top: 70px;
+}
+
+
+/*
+:local 才可以當變數使用, 如果沒寫:local or :global, sass-loader一律defualt為:local;
+*/
+:local .app-test-local {
+    background-color: brown;
+}
+
+/*
+不可當變數用，跟一般的css一樣直接帶入className使用
+*/
+:global(.app-test-global) {
+    background-color: red;
 }

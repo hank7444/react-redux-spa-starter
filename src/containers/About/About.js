@@ -6,6 +6,8 @@ class Home extends Component {
 
     return (
       <div>
+        <i className="icon-close"></i>
+        <i className="icon-accupass"></i>
         <h1>About!</h1>
       </div>
     );

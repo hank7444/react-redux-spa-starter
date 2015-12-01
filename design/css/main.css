@@ -1,67 +1,4 @@
 @charset "UTF-8";
-/*
-    webpack will convert png to base64 when image size less then 8k(deafult),
-    so sprite icon is unnecessary
-*/
-/*
- * Retina Backgrounds for Compass
- * by:              Gaya Kessler
- * last update:     03/11/14
- *
- * Usage:
- * 1. create background image for pixel ratio 1 screens and put it somewhere in your images folder.
- * 2. create background image for pixel ratio 2 screens and put it somewhere in your images folder.
- * 3. include the background-image property in your Sass/Scss using: '@include background-retina(<ratio-1-imagefile>, <ratio-2-imagefile>)'
- */
-.icon-readme {
-  background-image: url('../img/readme_title.png');
-  background-repeat: no-repeat;
-  overflow: hidden;
-  display: inline-block;
-  height: 50px;
-  width: 159px;
-}
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-  .icon-readme {
-    background-image: url('../img/readme_title_2x.png');
-    background-size: 159px 50.5px;
-    height: 51.5px;
-    width: 160px;
-  }
-}
-
-.icon-fb {
-  background-image: url('../img/btn_fb_s.png');
-  background-repeat: no-repeat;
-  overflow: hidden;
-  display: inline-block;
-  height: 38px;
-  width: 39px;
-}
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-  .icon-fb {
-    background-image: url('../img/btn_fb_s_2x.png');
-    background-size: 39px 38px;
-    height: 39px;
-    width: 40px;
-  }
-}
-
-.bg-action2 {
-  background-image: url('../img/action_2_w.png');
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: 100% 100%;
-}
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-  .bg-action2 {
-    background-image: url('../img/action_2_w_2x.png');
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: 100% 100%;
-  }
-}
-
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -237,51 +174,82 @@ body.menu-open {
   margin-right: 21px;
 }
 
-.svgaccupassMobileTest, .svgaccuvallyInc, .svgclose, .svgfeaturesGraphic1, .svgfeaturesGraphic2 {
-  background: url(../img/svg-sprite-a53199ed.svg) no-repeat;
+/*
+    webpack will convert png to base64 when image size less then 8k(deafult),
+    so sprite icon is unnecessary
+*/
+/*
+ * Retina Backgrounds for Compass
+ * by:              Gaya Kessler
+ * last update:     03/11/14
+ *
+ * Usage:
+ * 1. create background image for pixel ratio 1 screens and put it somewhere in your images folder.
+ * 2. create background image for pixel ratio 2 screens and put it somewhere in your images folder.
+ * 3. include the background-image property in your Sass/Scss using: '@include background-retina(<ratio-1-imagefile>, <ratio-2-imagefile>)'
+ */
+.icon-readme {
+  background-image: url('../img/readme_title.png');
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: inline-block;
+  height: 50px;
+  width: 159px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .icon-readme {
+    background-image: url('../img/readme_title_2x.png');
+    background-size: 159px 50.5px;
+    height: 51.5px;
+    width: 160px;
+  }
 }
 
-.svgaccupassMobileTest {
+.icon-fb {
+  background-image: url('../img/btn_fb_s.png');
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: inline-block;
+  height: 38px;
+  width: 39px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .icon-fb {
+    background-image: url('../img/btn_fb_s_2x.png');
+    background-size: 39px 38px;
+    height: 39px;
+    width: 40px;
+  }
+}
+
+.bg-action2 {
+  background-image: url('../img/action_2_w.png');
+  background-repeat: no-repeat;
   background-position: 0 0;
+  background-size: 100% 100%;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .bg-action2 {
+    background-image: url('../img/action_2_w_2x.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100% 100%;
+  }
 }
 
-.svgaccupassMobileTestDims {
-  width: 220.89px;
-  height: 48.631px;
+.icon-accupass {
+  background-image: url('../img/svg/accupass.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  width: 137px;
+  height: 30px;
 }
 
-.svgaccuvallyInc {
-  background-position: 90.15918367346939% 82.19895287958116%;
-}
-
-.svgaccuvallyIncDims {
-  width: 141px;
-  height: 27px;
-}
-
-.svgclose {
-  background-position: 99.69421487603306% 80.51282051282051%;
-}
-
-.svgcloseDims {
+.icon-close {
+  background-image: url('../img/svg/close.svg');
+  background-repeat: no-repeat;
+  background-position: center;
   width: 23px;
   height: 23px;
-}
-
-.svgfeaturesGraphic1 {
-  background-position: 0 99.24693877551022%;
-}
-
-.svgfeaturesGraphic1Dims {
-  width: 161px;
-  height: 169px;
-}
-
-.svgfeaturesGraphic2 {
-  background-position: 99.9502262443439% 0;
-}
-
-.svgfeaturesGraphic2Dims {
-  width: 165px;
-  height: 157px;
 }
