@@ -49,6 +49,10 @@ export default class JqueryFadeIn extends Component {
     }
   }
 
+  componentWillUnmount() {
+
+  }
+
   fadeIn() {
     console.log('####Call JqueryFadeIn fadeIn()');
     //const $el = $(ReactDOM.findDOMNode(this));

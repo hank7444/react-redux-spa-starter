@@ -1,6 +1,7 @@
 import 'babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Perf from 'react-addons-perf';
 import {Provider} from 'react-redux';
 import {ReduxRouter} from 'redux-router';
 import io from 'socket.io-client';
@@ -42,6 +43,12 @@ function initSocket() {
 }
 
 global.socket = initSocket();
+
+
+// Performace Tools, 不是很會用, 先放著
+if (__DEVELOPMENT__) {
+  window.Perf = Perf;
+}
 
 ReactDOM.render(
   <Provider store={store}>

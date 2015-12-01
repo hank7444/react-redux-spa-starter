@@ -142,6 +142,7 @@
     "nsp": "^2.0.2",
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",
+    "react-addons-perf": "^0.14.3",
     "react-addons-test-utils": "^0.14.3",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",

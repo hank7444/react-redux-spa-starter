@@ -5,8 +5,6 @@ const locationsAreEqual = (locA, locB) => (locA.pathname === locB.pathname) && (
 
 export default ({getState, dispatch}) => next => action => {
 
-  console.log('############action.type', action.type);
-
   if (action.type === ROUTER_DID_CHANGE) {
     if (getState().router && locationsAreEqual(action.payload.location, getState().router.location)) {
       return next(action);

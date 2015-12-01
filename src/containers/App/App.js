@@ -141,6 +141,8 @@ export default class App extends Component {
 
     //this.refs.loader.fadeIn();
 
+
+
     /*
     this.setState({val: this.state.val + 1}); 0
     console.log(this.state.val);    // 第 1 次 log
@@ -163,7 +165,6 @@ export default class App extends Component {
 
   // 透過redux state redirect route的工作，請在這裡進行
   componentWillReceiveProps(nextProps) {
-
 
     const router = this.props.router;
     const history = this.props.history;
@@ -190,6 +191,8 @@ export default class App extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const router = this.props.router;
     const nextRouter = nextProps.router;
+
+
 
     return true;
   }
@@ -225,6 +228,7 @@ export default class App extends Component {
   }
 
   render() {
+
     const styles = require('./App.scss');
     const css = require('./appTest.css');
 
@@ -285,6 +289,8 @@ export default class App extends Component {
 
           <a onClick={this.fadeIn.bind(this)}>fadeIn</a>
           <a onClick={this.fadeOut.bind(this)}>fadeOut</a>
+
+
 
           <JqueryFadeIn ref="loader" isLoading={this.state.isLoading}/>
 
