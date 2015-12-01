@@ -15,9 +15,13 @@ export default class InfoBar extends Component {
   render() {
     const {info, load} = this.props; // eslint-disable-line no-shadow
     const styles = require('./InfoBar.scss');
+    const stylesFromCss = require('./InfoBar.css'); // css當變數竟然是空的..
+
     return (
       <div className={styles.infoBar + ' well'}>
         <div className="container">
+          <i className={styles.iconFb}></i>
+          <h1 className={stylesFromCss.myLove}>test</h1>
           This is an info bar
           {' '}
           <strong>{info ? info.message : 'no info!'}</strong>

@@ -9,7 +9,7 @@ import getRoutes from './routes';
 
 
 // 切板完成後的css放在這
-import 'style/css/bundle.css';
+import 'style/sass/global.scss';
 
 // default的redux state
 const initialState = {};

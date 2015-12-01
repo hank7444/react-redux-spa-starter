@@ -1,5 +1,9 @@
 @charset "UTF-8";
 /*
+    webpack will convert png to base64 when image size less then 8k(deafult),
+    so sprite icon is unnecessary
+*/
+/*
  * Retina Backgrounds for Compass
  * by:              Gaya Kessler
  * last update:     03/11/14

@@ -1,5 +1,19 @@
+// susy測試
+@import "~compass-mixins/lib/compass";
+@import "~susy/sass/susy";
+@import "~breakpoint-sass/stylesheets/breakpoint";
+
+$susy: (global-box-sizing: border-box, columns: 12, column-width: 36px, gutter-position: inside, gutters: 1/3);
+
 .app {
   background-color: pink;
+  @include breakpoint(600px) {
+    width: 500px;
+  }
+}
+
+.section4 {
+    @include span(4);
 }
 
 .appContent {

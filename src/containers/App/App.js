@@ -8,7 +8,7 @@ import { isLoaded as isInfoLoaded, load as loadInfo, loadAll, loadRace, loadWate
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import * as einfoActions from 'redux/modules/einfo';
 
-import { Context, CounterButton, DumbTest, TickTock } from 'components';
+import {InfoBar, Context, CounterButton, DumbTest, TickTock } from 'components';
 
 /*
 這邊將react與redux進行連接的動作，
@@ -254,7 +254,7 @@ export default class App extends Component {
 
         <div className={styles.appContent}>
 
-          <div>
+          <div className={styles.section4}>
             counter: {counter.count}
           </div>
 
@@ -263,6 +263,8 @@ export default class App extends Component {
           <CounterButton/>
 
           <DumbTest/>
+
+          <InfoBar/>
 
           <i className="icon-fb"></i>
 
