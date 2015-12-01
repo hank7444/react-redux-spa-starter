@@ -6,8 +6,6 @@ import {Provider} from 'react-redux';
 import {ReduxRouter} from 'redux-router';
 import io from 'socket.io-client';
 import createStore from './redux/createStore';
-import getRoutes from './routes';
-
 
 // 切板完成後的css放在這
 import 'style/css/bundle.css';
@@ -20,7 +18,13 @@ const initialState = {};
 const store = createStore(initialState);
 const dest = document.getElementById('content');
 const component = (
-  <ReduxRouter routes={getRoutes(store)}/>
+
+  <ReduxRouter
+    routes={[]}
+    location={{}}
+    params={{}}
+    components={[]}
+  />
 );
 
 function initSocket() {

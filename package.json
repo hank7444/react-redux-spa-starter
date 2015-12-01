@@ -87,7 +87,7 @@
     "react-highcharts": "^5.0.4",
     "react-mixin": "^3.0.3",
     "react-redux": "^4.0.0",
-    "react-router": "^1.0.0-rc3",
+    "react-router": "^1.0.0-rc4",
     "scroll-behavior": "^0.3.0",
     "socket.io-client": "^1.3.7",
     "superagent": "^1.4.0"

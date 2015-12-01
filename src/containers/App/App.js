@@ -74,9 +74,11 @@ export default connect(
 )(App);
 
 */
-function fetchData(getState, dispatch) {
+function fetchDataDeffered(getState, dispatch, location, params) {
   const promises = [];
 
+
+  console.log('location from fetchData', location);
   /*
   if (!isInfoLoaded(getState())) {
     promises.push(dispatch(loadInfo()));
@@ -86,10 +88,17 @@ function fetchData(getState, dispatch) {
   }
   */
   //promises.push(dispatch(loadAuth()));
-  return Promise.all(promises.push(dispatch(loadWaterfall())));
+
+  // 防止導頁時連續呼叫兩次
+  if (location.action !== 'REPLACE') {
+
+    return Promise.all(promises.push(dispatch(loadWaterfall())));
+  }
+  return null;
 }
 
-@connectData(null, fetchData)
+// 每次route切換都會拿一次資料，如果寫在componentDidMount就只有reload才會呼叫(以App Component為例)
+@connectData(null, fetchDataDeffered)
 @connect(
   state => ({
     user: state.auth.user,
@@ -146,6 +155,8 @@ export default class App extends Component {
 
 
   componentDidMount() {
+
+    //this.props.loadWaterfall();
 
     //this.props.loadInfo();
     //this.props.loadAll();
@@ -262,7 +273,7 @@ export default class App extends Component {
 
     // 可以觀察到，當triggerLoadInfo一呼叫，讓redux store改變後，react會重新rerender畫面
 
-    //console.log('this.props', this.props);
+    console.log('this.props', this.props);
 
     /*
       this.context是很妙的屬性，可以讓child component拿到parent component設定的值而不需
@@ -313,7 +324,6 @@ export default class App extends Component {
 
           <DumbTest/>
 
-          <InfoBar/>
 
           <i className="icon-fb"></i>
 
