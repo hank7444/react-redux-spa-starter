@@ -8,6 +8,8 @@ module.exports = function(config) {
     'karma-mocha-reporter',
     'karma-sourcemap-loader',
     'karma-chrome-launcher',
+    'karma-chai',
+    'karma-chai-sinon'
   ];
 
   var browsers = ['Chrome'];
@@ -30,9 +32,11 @@ module.exports = function(config) {
 
     browsers: browsers,
 
-    singleRun: !!process.env.CONTINUOUS_INTEGRATION,
+    frameworks: ['mocha', 'chai', 'chai-sinon'],
 
-    frameworks: [ 'mocha' ],
+    colors: true,
+    autoWatch: autoWatch,
+    singleRun: singleRun,
 
     files: [
       //'./node_modules/phantomjs-polyfill/bind-polyfill.js',
@@ -51,11 +55,11 @@ module.exports = function(config) {
       devtool: 'inline-source-map',
       module: {
         loaders: [
-          { test: /\.(jpe?g|png|gif|svg)$/, loader: 'url', query: {limit: 10240} },
-          { test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-          { test: /\.json$/, loader: 'json-loader' },
-          { test: /\.less$/, loader: 'style!css!less' },
-          { test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' }
+          {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
+          {test: /\.json$/, loader: 'json-loader' },
+          {test: /\.css$/, loader: 'style-loader!css-loader'},
+          {test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'},
+          {test: /\.(jpe?g|png|gif|svg)$/, loader: 'url', query: {limit: 8192}}
         ]
       },
       resolve: {
@@ -74,11 +78,9 @@ module.exports = function(config) {
           __DEVELOPMENT__: true,
           __DEVTOOLS__: false  // <-------- DISABLE redux-devtools HERE
         })
-      ]
+      ],
+      externals: ['sinon']
     },
-    colors: true,
-    autoWatch: autoWatch,
-    singleRun: singleRun,
     webpackServer: {
       noInfo: true
     }

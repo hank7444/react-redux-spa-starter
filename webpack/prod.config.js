@@ -26,7 +26,7 @@ module.exports = {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel']},
       {test: /\.json$/, loader: 'json-loader'},
-      {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap&includePaths[]=node_modules/compass-mixins/lib')},
+      {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap')},
       {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
       {test: /\.(jpe?g|png|gif|svg)$/, loader: 'url', query: {limit: 8192}}
     ]

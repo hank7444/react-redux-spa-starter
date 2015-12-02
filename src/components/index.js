@@ -9,3 +9,4 @@ export Header from './Header/Header';
 export Footer from './Footer/Footer';
 export JqueryFadeIn from './JqueryFadeIn/JqueryFadeIn';
 export JqueryDraggable from './JqueryDraggable/JqueryDraggable';
+export TextInput from './TextInput/TextInput';

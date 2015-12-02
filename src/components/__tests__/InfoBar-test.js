@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {renderIntoDocument} from 'react-addons-test-utils';
-import { expect} from 'chai';
-import { InfoBar } from 'components';
-import { Provider } from 'react-redux';
+import {expect} from 'chai';
+import {InfoBar } from 'components';
+import {Provider} from 'react-redux';
 import createStore from 'redux/createStore';
 //import ApiClient from 'helpers/ApiClient';
 //const client = new ApiClient();

@@ -1,69 +1,62 @@
-const LOAD = 'redux-example/auth/LOAD';
-const LOAD_SUCCESS = 'redux-example/auth/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/auth/LOAD_FAIL';
-const LOGIN = 'redux-example/auth/LOGIN';
-const LOGIN_SUCCESS = 'redux-example/auth/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
-const LOGOUT = 'redux-example/auth/LOGOUT';
-const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
-const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
+import {auth as cons} from '../constants';
 
 const initialState = {
   loaded: false
 };
 
+
 export default function reducer(state = initialState, action = {}) {
 
   switch (action.type) {
-    case LOAD:
+    case cons.LOAD:
       return {
         ...state,
         loading: true
       };
-    case LOAD_SUCCESS:
+    case cons.LOAD_SUCCESS:
       return {
         ...state,
         loading: false,
         loaded: true,
         user: action.result
       };
-    case LOAD_FAIL:
+    case cons.LOAD_FAIL:
       return {
         ...state,
         loading: false,
         loaded: false,
         error: action.error
       };
-    case LOGIN:
+    case cons.LOGIN:
       return {
         ...state,
         loggingIn: true
       };
-    case LOGIN_SUCCESS:
+    case cons.LOGIN_SUCCESS:
       return {
         ...state,
         loggingIn: false,
         user: action.result
       };
-    case LOGIN_FAIL:
+    case cons.LOGIN_FAIL:
       return {
         ...state,
         loggingIn: false,
         user: null,
         loginError: action.error
       };
-    case LOGOUT:
+    case cons.LOGOUT:
       return {
         ...state,
         loggingOut: true
       };
-    case LOGOUT_SUCCESS:
+    case cons.LOGOUT_SUCCESS:
       return {
         ...state,
         loggingOut: false,
         user: null
       };
-    case LOGOUT_FAIL:
+    case cons.LOGOUT_FAIL:
       return {
         ...state,
         loggingOut: false,
@@ -80,7 +73,7 @@ export function isLoaded(globalState) {
 
 export function load() {
   return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    types: [cons.LOAD, cons.LOAD_SUCCESS, cons.LOAD_FAIL],
     promises: (client) => client.get('/auth/load')
   };
 }
@@ -88,7 +81,7 @@ export function load() {
 export function login(name) {
 
   return {
-    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
+    types: [cons.LOGIN, cons.LOGIN_SUCCESS, cons.LOGIN_FAIL],
     promises: (client) => client.post('/auth/login', {
       data: {
         name: name
@@ -99,7 +92,7 @@ export function login(name) {
 
 export function logout() {
   return {
-    types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
+    types: [cons.LOGOUT, cons.LOGOUT_SUCCESS, cons.LOGOUT_FAIL],
     promises: (client) => client.get('/auth/logout')
   };
 }
