@@ -12,6 +12,14 @@ describe('TextInput', () => {
   let comp = null;
 
   beforeEach(() => {
+
+    /*
+      By chaining the spy with and.callThrough,
+      the spy will still track all calls to it but in addition
+      it will delegate to the actual implementation.
+      簡單說就是被spy的function在被spy後就還給你原來的function了
+    */
+    spyOn(TextInput.prototype, 'handleCheckPhoneNumber').and.callThrough();
     comp = renderIntoDocument(
       <TextInput />
     );
@@ -22,9 +30,6 @@ describe('TextInput', () => {
   });
 
   it('should render correctly', () => {
-    comp = renderIntoDocument(
-      <TextInput />
-    );
     return expect(comp).toBeTruthy();
   });
 
@@ -33,22 +38,18 @@ describe('TextInput', () => {
 
   it('call handleCheckPhoneNumber on Blur', () => {
 
-    //const spy = sandbox.stub(TextInput.prototype, 'handleCheckPhoneNumber').returns();
-    spyOn(TextInput.prototype, 'handleCheckPhoneNumber').and.callThrough();
-    comp = renderIntoDocument(
-      <TextInput />
-    );
     const textInput = findRenderedDOMComponentWithClass(comp, 'textInput');
 
     Simulate.blur(textInput);
-    return expect(comp.handleCheckPhoneNumber.calls.any()).toEqual(true);
+
+    expect(comp.state.counter).toEqual(10);
+    expect(comp.handleCheckPhoneNumber.calls.any()).toEqual(true);
   });
 
 
   it('call handleCheckPhoneNumber(5) = 25', () => {
     comp.handleCheckPhoneNumber(5);
-    return expect(comp.state.counter).toEqual(25);
-
+    expect(comp.state.counter).toEqual(25);
   });
 
 });

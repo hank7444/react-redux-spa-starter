@@ -20,7 +20,7 @@ export default class TextInput extends Component {
         <input
             type="text"
             className="textInput"
-            onBlur={this.handleCheckPhoneNumber.bind(this)} />
+            onBlur={this.handleCheckPhoneNumber.bind(this, 2)} />
     );
   }
 }

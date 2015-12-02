@@ -41,12 +41,12 @@ describe('InfoBar', () => {
 
   it('should render with a reload button', () => {
     const text = dom.getElementsByTagName('button')[0].textContent;
-    return expect(typeof text).toBe('string');
+    return expect(text).toEqual(jasmine.any(String));
   });
 
   it('should render the correct className', () => {
     const styles = require('components/InfoBar/InfoBar.scss');
-    expect(typeof styles.infoBar).toBe('string');
+    expect(styles.infoBar).toEqual(jasmine.any(String));
     expect(dom.className).toMatch(new RegExp(styles.infoBar));
   });
 
