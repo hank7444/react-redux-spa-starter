@@ -18,13 +18,15 @@ describe('TextInput', () => {
     sandbox = sinon.sandbox.create();
   });
 
+
   afterEach(() => {
-    sandbox.restore();
+    sandbox.restore(); // 將sinon stub解除, 後面才呼叫的到原本的method
   });
 
+
   it('should render correctly', () => {
-    const comp = renderIntoDocument(
-      <TextInput/>
+    comp = renderIntoDocument(
+      <TextInput />
     );
     return expect(comp).to.be.ok;
   });
@@ -33,9 +35,9 @@ describe('TextInput', () => {
   // 測試blur時，handleCheckPhoneNumber function是否會觸發
   it('call handleCheckPhoneNumber on Blur', () => {
 
-    const spy = sinon.stub(TextInput.prototype, 'handleCheckPhoneNumber').returns();
-    const comp = renderIntoDocument(
-      <TextInput/>
+    const spy = sandbox.stub(TextInput.prototype, 'handleCheckPhoneNumber').returns();
+    let comp = renderIntoDocument(
+      <TextInput />
     );
     const textInput = findRenderedDOMComponentWithClass(comp, 'textInput');
 
@@ -44,4 +46,12 @@ describe('TextInput', () => {
   });
 
 
+  it('call handleCheckPhoneNumber(5) = 25', () => {
+    let comp = renderIntoDocument(
+      <TextInput />
+    );
+    comp.handleCheckPhoneNumber(5);
+    return expect(comp.state.counter).to.be.equal(25);
+
+  });
 });

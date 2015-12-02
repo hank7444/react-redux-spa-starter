@@ -5,8 +5,14 @@ import {increment} from 'redux/modules/counter';
 
 export default class TextInput extends Component {
 
-  handleCheckPhoneNumber() {
+  handleCheckPhoneNumber(num) {
     console.log('handleCheckPhoneNumber is running.');
+
+    this.setState({
+      counter: num * 5
+    }, function() {
+      console.log('@@@@@@#####BBBBB');
+    });
   }
 
   render() {
