@@ -2,7 +2,7 @@
   "extends": "eslint-config-airbnb",
   "env": {
     "browser": true,
-    "mocha": true,
+    "jasmine": true,
     "node": true
   },
   "rules": {
@@ -12,7 +12,6 @@
     "comma-dangle": 0,  // not sure why airbnb turned this on. gross!
     "indent": [2, 2, {"SwitchCase": 1}],
     "spaced-comment": 0,
-
     //Temporarirly disabled due to a possible bug in babel-eslint (todomvc example)
     "block-scoped-var": 0,
     // Temporarily disabled for test/* until babel/babel-eslint#33 is resolved

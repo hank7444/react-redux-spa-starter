@@ -4,12 +4,10 @@ module.exports = function(config) {
 
   var plugins = [
     'karma-webpack',
-    'karma-mocha',
+    'karma-jasmine',
     'karma-mocha-reporter',
     'karma-sourcemap-loader',
-    'karma-chrome-launcher',
-    'karma-chai',
-    'karma-chai-sinon'
+    'karma-chrome-launcher'
   ];
 
   var browsers = ['Chrome'];
@@ -32,7 +30,7 @@ module.exports = function(config) {
 
     browsers: browsers,
 
-    frameworks: ['mocha', 'chai', 'chai-sinon'],
+    frameworks: ['jasmine'],
 
     colors: true,
     autoWatch: autoWatch,
@@ -78,8 +76,7 @@ module.exports = function(config) {
           __DEVELOPMENT__: true,
           __DEVTOOLS__: false  // <-------- DISABLE redux-devtools HERE
         })
-      ],
-      externals: ['sinon']
+      ]
     },
     webpackServer: {
       noInfo: true

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import React from 'react';
 import { div } from 'react-dom';
 import connectData from '../connectData';
@@ -20,10 +19,10 @@ describe('connectData', () => {
   });
 
   it('should set fetchData as a static property of the final component', () => {
-    expect(DataComponent.fetchData).to.equal(fetchData);
+    expect(DataComponent.fetchData).toEqual(fetchData);
   });
 
   it('should set fetchDataDeferred as a static property of the final component', () => {
-    expect(DataComponent.fetchDataDeferred).to.equal(fetchDataDeferred);
+    expect(DataComponent.fetchDataDeferred).toEqual(fetchDataDeferred);
   });
 });

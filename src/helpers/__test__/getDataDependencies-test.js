@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import React from 'react';
 import { div } from 'react-dom';
 import getDataDependencies from '../getDataDependencies';
@@ -44,7 +43,7 @@ describe('getDataDependencies', () => {
       CompWithFetchDataDeferred
     ], getState, dispatch, location, params);
 
-    expect(deps).to.deep.equal([
+    expect(deps).toEqual([
       'fetchData getState dispatch location params'
     ]);
   });
@@ -57,7 +56,7 @@ describe('getDataDependencies', () => {
       CompWithFetchDataDeferred
     ], getState, dispatch, location, params, true);
 
-    expect(deps).to.deep.equal([
+    expect(deps).toEqual([
       'fetchDataDeferred getState dispatch location params'
     ]);
   });
