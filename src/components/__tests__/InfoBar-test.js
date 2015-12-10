@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import {renderIntoDocument} from 'react-addons-test-utils';
+//import {shallow} from 'reagent';
+
 
 import {InfoBar } from 'components';
 import {Provider} from 'react-redux';
 import createStore from 'redux/createStore';
 //import ApiClient from 'helpers/ApiClient';
 //const client = new ApiClient();
-
 
 describe('InfoBar', () => {
   const mockStore = {

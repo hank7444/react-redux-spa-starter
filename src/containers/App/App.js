@@ -8,7 +8,7 @@ import { isLoaded as isInfoLoaded, load as loadInfo, loadAll, loadRace, loadWate
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import * as einfoActions from 'redux/modules/einfo';
 
-import {AnimationTest, InfoBar, Context, CounterButton, DumbTest, TickTock, JqueryFadeIn, JqueryDraggable} from 'components';
+import {AnimationTest, InfoBar, Context, CounterButton, DumbTest, TickTock, TextInput, JqueryFadeIn, JqueryDraggable} from 'components';
 import connectData from 'helpers/connectData';
 /*
 這邊將react與redux進行連接的動作，
@@ -221,7 +221,30 @@ export default class App extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     console.log('> componentWillUpdate(nextProps, nextState)');
+
+    //console.debug('this.state', this.state);
   }
+
+
+  componentDidMount() {
+    window.addEventListener("click", this.clickConfig.bind(this), false);
+  }
+
+
+  componentWillUnmount() {
+    console.debug('componentUnMount!');
+    window.removeEventListener("click", this.clickConfig.bind(this));
+  }
+
+  clickConfig() {
+    console.debug('click from window! -- App');
+
+    // 如果state的值不變化，是不會觸發接下來child component 更新的事件!
+    this.setState({
+      clickTrigger: !this.state.clickTrigger
+    });
+  }
+
 
   fadeIn() {
     this.setState({
@@ -323,6 +346,8 @@ export default class App extends Component {
           <CounterButton/>
 
           <DumbTest/>
+
+          <InfoBar clickTrigger={this.state.clickTrigger}/>
 
 
           <i className="icon-fb"></i>

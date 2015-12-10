@@ -3,6 +3,8 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {load} from 'redux/modules/info';
 
+import { TextInput } from 'components';
+
 @connect(
     state => ({info: state.info.data}),
     dispatch => bindActionCreators({load}, dispatch))
@@ -12,7 +14,23 @@ export default class InfoBar extends Component {
     load: PropTypes.func.isRequired
   }
 
+
+
+  componentDidMount() {
+
+
+  }
+
+
+  componentWillUpdate(nextProps, nextState) {
+    console.debug('nextProps', nextProps);
+    console.debug('InfoBar will update');
+  }
+
   render() {
+
+    console.debug('this.props', this.props);
+
     const {info, load} = this.props; // eslint-disable-line no-shadow
     const styles = require('./InfoBar.scss');
     const stylesFromCss = require('./InfoBar.css'); // css當變數竟然是空的..
@@ -22,6 +40,7 @@ export default class InfoBar extends Component {
         <div className="container">
           <i className={styles.iconFb}></i>
           <h1 className={stylesFromCss.myLove}>test</h1>
+          <TextInput/>
           This is an info bar
           {' '}
           <strong>{info ? info.message : 'no info!'}</strong>
