@@ -126,6 +126,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-svg-sprite": "^1.2.15",
     "gulp-util": "^3.0.7",
+    "html-webpack-plugin": "^1.7.0",
     "imagemin-pngcrush": "^4.1.0",
     "jasmine": "^2.3.2",
     "jasmine-core": "^2.3.4",

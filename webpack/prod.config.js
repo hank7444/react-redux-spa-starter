@@ -4,6 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 var CleanPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var strip = require('strip-loader');
 
 var relativeAssetsPath = '../static/dist';
@@ -19,7 +20,7 @@ module.exports = {
   },
   output: {
     path: assetsPath,
-    filename: 'bundle.js',
+    filename: 'bundle.[hash].js',
     publicPath: '/static/dist/'
   },
   module: {
@@ -43,7 +44,7 @@ module.exports = {
     new CleanPlugin([relativeAssetsPath]),
 
     // css files from the extract-text-plugin loader
-    new ExtractTextPlugin('bundle.css', {allChunks: true}),
+    new ExtractTextPlugin('bundle.[hash].css', {allChunks: true}),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false
@@ -60,7 +61,14 @@ module.exports = {
       }
     }),
 
+    new HtmlWebpackPlugin({
+      title: '1234 title!',
+      template: 'index.html',
+      inject: 'body'
+    })
+
     // optimizations
+    /*
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -68,5 +76,6 @@ module.exports = {
         warnings: false
       }
     })
+    */
   ]
 };
