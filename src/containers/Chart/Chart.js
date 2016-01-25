@@ -7,7 +7,7 @@ class Chart extends Component {
 
   static propTypes = {
     history: PropTypes.object.isRequired
-  }
+  };
 
   state = {
     message: '',
@@ -60,7 +60,7 @@ class Chart extends Component {
     if (socket) {
       socket.on('msg', onMessageReceived);
     }
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -73,7 +73,7 @@ class Chart extends Component {
       from: 'test',
       text: msg
     });
-  }
+  };
 
   render() {
 

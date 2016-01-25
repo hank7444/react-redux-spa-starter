@@ -9,7 +9,7 @@ export default class Header extends Component {
 
     const style = {
       backgroundColor: 'navy'
-    }
+    };
 
     return (
       <div style={style}>

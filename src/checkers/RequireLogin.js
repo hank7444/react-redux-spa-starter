@@ -18,7 +18,7 @@ export default class RequireLogin extends Component {
     ]),
     dispatch: PropTypes.func
 
-  }
+  };
 
   componentWillMount() {
 

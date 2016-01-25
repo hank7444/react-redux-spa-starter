@@ -17,7 +17,7 @@ export default class TickTock extends Component {
     count: PropTypes.number
     //increment: PropTypes.func.isRequired
     //className: PropTypes.string
-  }
+  };
 
   constructor(props, context) {
     super(props, context); // 這邊要設定, 在contstructor裡面才拿的到this.props, 跟this.context

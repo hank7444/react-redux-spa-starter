@@ -30,9 +30,15 @@ export default function createStore(initialState) {
     )(_createStore);
   }
 
+
+
   finalCreateStore = reduxReactRouter({getRoutes, history})(finalCreateStore);
 
-  const reducer = require('./modules/reducer');
+
+  const reducer = require('./modules/reducer').default;
+
+  console.log('reducer', reducer);
+
   const store = finalCreateStore(reducer, initialState);
 
   return store;

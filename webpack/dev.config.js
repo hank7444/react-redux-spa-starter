@@ -1,4 +1,4 @@
-require('babel-core/polyfill');
+//require('babel-polyfill');
 var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
@@ -38,11 +38,13 @@ babelLoaderQuery.extra['react-transform'].transforms.push({
   locals: ['module']
 });
 
+
 module.exports = {
   devtool: 'inline-source-map',
   context: path.resolve(__dirname, '..'),
   entry: {
     'main': [
+      'babel-polyfill',
       'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
       './src/index.js'
     ]
@@ -54,7 +56,38 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel?' + JSON.stringify(babelLoaderQuery)]},
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        query: {
+          plugins: ['transform-runtime', 'transform-decorators-legacy'],
+          presets: ['es2015', 'stage-0', 'react', 'react-hmre'],
+        },
+        "plugins": [
+        // must be an array with options object as second item
+        ["react-transform", {
+          // must be an array of objects
+          "transforms": [{
+            // can be an NPM module name or a local path
+            "transform": "react-transform-hmr",
+            // see transform docs for "imports" and "locals" dependencies
+            "imports": ["react"],
+            "locals": ["module"]
+          }, {
+            // you can have many transforms, not just one
+            "transform": "react-transform-catch-errors",
+            "imports": ["react", "redbox-react"]
+          }, {
+            // can be an NPM module name or a local path
+            "transform": "./src/my-custom-transform"
+          }]
+          // by default we only look for `React.createClass` (and ES6 classes)
+          // but you can tell the plugin to look for different component factories:
+          // factoryMethods: ["React.createClass", "createClass"]
+        }]
+      ]
+      },
       {test: /\.json$/, loader: 'json-loader'},
       {test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'},
       {test: /\.css$/, loader: 'style-loader!css-loader'},

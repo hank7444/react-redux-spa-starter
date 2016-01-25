@@ -19,11 +19,11 @@ export default class CounterButton extends Component {
     count: PropTypes.number,
     increment: PropTypes.func.isRequired,
     className: PropTypes.string
-  }
+  };
 
   props = {
     className: ''
-  }
+  };
 
 
   constructor() {

@@ -23,7 +23,7 @@ class Login extends Component {
     user: PropTypes.object,
     login: PropTypes.func,
     logout: PropTypes.func
-  }
+  };
 
   constructor(props) {
     super(props);
