@@ -4,24 +4,22 @@ import {connect} from 'react-redux';
 import {load} from 'redux/modules/info';
 
 import { TextInput } from 'components';
+import enhance from '../enhance/enhance';
 
 @connect(
     state => ({info: state.info.data}),
     dispatch => bindActionCreators({load}, dispatch))
+@enhance('myData from outside!!')
 export default class InfoBar extends Component {
   static propTypes = {
     info: PropTypes.object,
     load: PropTypes.func.isRequired
   }
 
-
-
   componentDidMount() {
-
+    console.debug('InfoBar props', this.props);
 
   }
-
-
   componentWillUpdate(nextProps, nextState) {
     console.debug('nextProps', nextProps);
     console.debug('InfoBar will update');

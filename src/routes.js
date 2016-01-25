@@ -31,12 +31,14 @@ export default () => {
       {/*
         要小心，如果沒登入時點About, 會被replaceState到Login, 導致App的fetchData做了兩次...
       */}
+      {/*
       <Route component={RequireTest}>
         <Route component={RequireLogin}>
           <Route path="/about" component={About}/>
         </Route>
       </Route>
-
+      */}
+      <Route path="/about" component={About}/>
       <Route path="/chart" component={Chart}/>
       <Route path="/login" component={Login}/>
       <Route path="*" component={NotFound} status={404} />
