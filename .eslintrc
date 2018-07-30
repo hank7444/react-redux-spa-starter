@@ -1,28 +1,66 @@
 {
-  "extends": "eslint-config-airbnb",
-  "env": {
-    "browser": true,
-    "jasmine": true,
-    "node": true
-  },
-  "rules": {
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2,
-    "comma-dangle": 0,  // not sure why airbnb turned this on. gross!
-    "indent": [2, 2, {"SwitchCase": 1}],
-    "spaced-comment": 0,
-    //Temporarirly disabled due to a possible bug in babel-eslint (todomvc example)
-    "block-scoped-var": 0,
-    // Temporarily disabled for test/* until babel/babel-eslint#33 is resolved
-    "padded-blocks": 0
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
   },
   "plugins": [
     "react"
   ],
+  "extends": [
+    "eslint:recommended",
+    "airbnb"
+  ],
+  "rules": {
+    "no-underscore-dangle": "off",
+    "arrow-body-style": "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
+    "max-len": [
+      "error",
+      140
+    ],
+    "consistent-return": "off",
+    "padded-blocks": "off",
+    "new-cap": "off",
+    "react/no-string-refs": "error",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+      }
+    ],
+    "jsx-a11y/no-static-element-interactions": 0,
+  },
   "globals": {
-    "__DEVELOPMENT__": true,
-    "__DEVTOOLS__": true,
-    "PR": true
+    "React": true,
+    "const": true,
+    "ga": true
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "amd": true,
+    "commonjs": true,
+    "node": true,
+    "jasmine": true
   }
 }
