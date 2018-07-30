@@ -1,0 +1,4 @@
+$breakpoint-medium-mobile-width: screen and (max-width: 375px);
+$breakpoint-fullHD-desktop-width: screen and (max-width: 380px);
+$breakpoint-2k-desktop-width: screen and (max-width: 400px);
+$breakpoint-4k-desktop-width: screen and (max-width: 560px);

@@ -1,0 +1,28 @@
+@define-mixin clearfix {
+    &:before {
+        content:"";
+        display: table;
+    }
+    &:after {
+        content:"";
+        display: table;
+        clear: both;
+    }
+    zoom: 1;
+}
+
+@define-mixin pseudoVerticalMiddle {
+    &:before {
+        display: inline-block;
+        content:'';
+        height: 100%;
+        vertical-align: middle;
+    }
+}
+
+@define-mixin ellipsis {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

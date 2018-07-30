@@ -1,0 +1,17 @@
+.animation-move-fadein {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+.animation-move-up {
+    transform: translate(0, -$app-move-vertical-gap);
+}
+
+.animation-move-down {
+    transform: translate(0, $app-move-vertical-gap);
+}
+
+.animation-move-fadeout {
+    opacity: 0;
+    visibility: hidden;
+}

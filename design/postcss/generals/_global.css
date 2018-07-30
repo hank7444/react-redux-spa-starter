@@ -1,0 +1,7 @@
+.no-scroll {
+    overflow-y: hidden !important;
+}
+
+.text-bold {
+    font-weight: bold !important;
+}

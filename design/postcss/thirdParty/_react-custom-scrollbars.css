@@ -1,0 +1,40 @@
+.scrollbars {
+    .track-horizontal {
+        position: absolute;
+        right: 2px;
+        left: 2px;
+        bottom: 2px;
+        height: 4px !important;
+        background-color: $color-grey-300;
+        opacity: .4;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .track-vertical {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 4px !important;
+        background-color: $color-grey-300;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .thumb-horizontal {
+        position: relative;
+        display: block;
+        height: 100% !important;
+        background-color: $color-grey;
+        border-radius: inherit;
+    }
+
+    .thumb-vertical {
+        position: relative;
+        display: block;
+        width: 100% !important;
+        cursor: pointer;
+        background-color: $color-grey;
+    }
+}

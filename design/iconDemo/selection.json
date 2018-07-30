@@ -1,0 +1,338 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M1024 590.444l-512-397.426-512 397.428v-162.038l512-397.426 512 397.428zM896 576v384h-256v-256h-256v256h-256v-384l384-288z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "home",
+          "house"
+        ],
+        "defaultCode": 59648,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "home, house",
+        "name": "home",
+        "id": 0,
+        "order": 496,
+        "prevSize": 32,
+        "code": 59648
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M0 1024h512v-1024h-512v1024zM320 128h128v128h-128v-128zM320 384h128v128h-128v-128zM320 640h128v128h-128v-128zM64 128h128v128h-128v-128zM64 384h128v128h-128v-128zM64 640h128v128h-128v-128zM576 320h448v64h-448zM576 1024h128v-256h192v256h128v-576h-448z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "office",
+          "buildings",
+          "work"
+        ],
+        "defaultCode": 59651,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "office, buildings",
+        "name": "office",
+        "id": 3,
+        "order": 497,
+        "prevSize": 32,
+        "code": 59651
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 3
+    },
+    {
+      "icon": {
+        "paths": [
+          "M864 0c88.364 0 160 71.634 160 160 0 36.020-11.91 69.258-32 96l-64 64-224-224 64-64c26.742-20.090 59.978-32 96-32zM64 736l-64 288 288-64 592-592-224-224-592 592zM715.578 363.578l-448 448-55.156-55.156 448-448 55.156 55.156z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "pencil",
+          "write",
+          "edit"
+        ],
+        "defaultCode": 59653,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "pencil, write",
+        "name": "pencil",
+        "id": 5,
+        "order": 498,
+        "prevSize": 32,
+        "code": 59653
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 5
+    },
+    {
+      "icon": {
+        "paths": [
+          "M864 192h-512c-88 0-160 72-160 160v512c0 88 72 160 160 160h512c88 0 160-72 160-160v-512c0-88-72-160-160-160zM416 896c-53.020 0-96-42.98-96-96s42.98-96 96-96 96 42.98 96 96-42.98 96-96 96zM416 512c-53.020 0-96-42.98-96-96s42.98-96 96-96 96 42.98 96 96-42.98 96-96 96zM608 704c-53.020 0-96-42.98-96-96s42.98-96 96-96 96 42.98 96 96-42.98 96-96 96zM800 896c-53.020 0-96-42.98-96-96s42.98-96 96-96 96 42.98 96 96-42.98 96-96 96zM800 512c-53.020 0-96-42.98-96-96s42.98-96 96-96 96 42.98 96 96-42.98 96-96 96zM828.76 128c-14.93-72.804-79.71-128-156.76-128h-512c-88 0-160 72-160 160v512c0 77.046 55.196 141.83 128 156.76v-636.76c0-35.2 28.8-64 64-64h636.76z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "dice",
+          "game",
+          "chance",
+          "luck",
+          "random",
+          "gample"
+        ],
+        "defaultCode": 59669,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "dice, game",
+        "name": "dice",
+        "id": 21,
+        "order": 499,
+        "prevSize": 32,
+        "code": 59669
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 21
+    },
+    {
+      "icon": {
+        "paths": [
+          "M817.57 348.15c-193.566-143.858-260.266-259.018-305.566-348.148v0c-0.004 0-0.004-0.002-0.004-0.002v0.002c-45.296 89.13-112 204.292-305.566 348.148-330.036 245.286-19.376 587.668 253.758 399.224-17.796 116.93-78.53 202.172-140.208 238.882v37.744h384.032v-37.74c-61.682-36.708-122.41-121.954-140.212-238.884 273.136 188.446 583.8-153.94 253.766-399.226z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "spades",
+          "cards",
+          "poker"
+        ],
+        "defaultCode": 59671,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "spades, cards",
+        "name": "spades",
+        "id": 23,
+        "order": 500,
+        "prevSize": 32,
+        "code": 59671
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 23
+    },
+    {
+      "icon": {
+        "paths": [
+          "M917.806 229.076c-22.212-30.292-53.174-65.7-87.178-99.704s-69.412-64.964-99.704-87.178c-51.574-37.82-76.592-42.194-90.924-42.194h-496c-44.112 0-80 35.888-80 80v864c0 44.112 35.888 80 80 80h736c44.112 0 80-35.888 80-80v-624c0-14.332-4.372-39.35-42.194-90.924zM785.374 174.626c30.7 30.7 54.8 58.398 72.58 81.374h-153.954v-153.946c22.984 17.78 50.678 41.878 81.374 72.572zM896 944c0 8.672-7.328 16-16 16h-736c-8.672 0-16-7.328-16-16v-864c0-8.672 7.328-16 16-16 0 0 495.956-0.002 496 0v224c0 17.672 14.326 32 32 32h224v624z",
+          "M736 832h-448c-17.672 0-32-14.326-32-32s14.328-32 32-32h448c17.674 0 32 14.326 32 32s-14.326 32-32 32z",
+          "M736 704h-448c-17.672 0-32-14.326-32-32s14.328-32 32-32h448c17.674 0 32 14.326 32 32s-14.326 32-32 32z",
+          "M736 576h-448c-17.672 0-32-14.326-32-32s14.328-32 32-32h448c17.674 0 32 14.326 32 32s-14.326 32-32 32z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "file-text",
+          "file",
+          "document",
+          "list",
+          "paper",
+          "page"
+        ],
+        "defaultCode": 59686,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "file-text2, file4",
+        "name": "file-text2",
+        "id": 38,
+        "order": 501,
+        "prevSize": 32,
+        "code": 59686
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 38
+    },
+    {
+      "icon": {
+        "paths": [
+          "M976 0h-384c-26.4 0-63.274 15.274-81.942 33.942l-476.116 476.116c-18.668 18.668-18.668 49.214 0 67.882l412.118 412.118c18.668 18.668 49.214 18.668 67.882 0l476.118-476.118c18.666-18.666 33.94-55.54 33.94-81.94v-384c0-26.4-21.6-48-48-48zM736 384c-53.020 0-96-42.98-96-96s42.98-96 96-96 96 42.98 96 96-42.98 96-96 96z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "price-tag"
+        ],
+        "defaultCode": 59701,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "price-tag",
+        "name": "price-tag",
+        "id": 53,
+        "order": 502,
+        "prevSize": 32,
+        "code": 59701
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 53
+    },
+    {
+      "icon": {
+        "paths": [
+          "M192 0v1024h768v-1024h-768zM576 256.33c70.51 0 127.67 57.16 127.67 127.67s-57.16 127.67-127.67 127.67-127.67-57.16-127.67-127.67 57.16-127.67 127.67-127.67v0zM768 768h-384v-64c0-70.696 57.306-128 128-128v0h128c70.696 0 128 57.304 128 128v64z",
+          "M64 64h96v192h-96v-192z",
+          "M64 320h96v192h-96v-192z",
+          "M64 576h96v192h-96v-192z",
+          "M64 832h96v192h-96v-192z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "address-book",
+          "contact",
+          "book",
+          "contacts"
+        ],
+        "defaultCode": 59716,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "address-book, contact",
+        "name": "address-book",
+        "id": 68,
+        "order": 503,
+        "prevSize": 32,
+        "code": 59716
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 68
+    },
+    {
+      "icon": {
+        "paths": [
+          "M320 384h128v128h-128zM512 384h128v128h-128zM704 384h128v128h-128zM128 768h128v128h-128zM320 768h128v128h-128zM512 768h128v128h-128zM320 576h128v128h-128zM512 576h128v128h-128zM704 576h128v128h-128zM128 576h128v128h-128zM832 0v64h-128v-64h-448v64h-128v-64h-128v1024h960v-1024h-128zM896 960h-832v-704h832v704z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "calendar",
+          "date",
+          "schedule",
+          "time",
+          "day"
+        ],
+        "defaultCode": 59731,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "calendar, date",
+        "name": "calendar",
+        "id": 83,
+        "order": 504,
+        "prevSize": 32,
+        "code": 59731
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 83
+    },
+    {
+      "icon": {
+        "paths": [
+          "M896 0h-896v1024h1024v-896l-128-128zM512 128h128v256h-128v-256zM896 896h-768v-768h64v320h576v-320h74.978l53.022 53.018v714.982z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "floppy-disk",
+          "save"
+        ],
+        "defaultCode": 59746,
+        "grid": 16
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "floppy-disk, save2",
+        "name": "floppy-disk",
+        "id": 98,
+        "order": 505,
+        "prevSize": 32,
+        "code": 59746
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 98
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "icomoon"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showCodes": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "icomoon"
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215
+    },
+    "historySize": 50
+  }
+}

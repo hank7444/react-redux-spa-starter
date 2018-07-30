@@ -1,0 +1,14 @@
+// variables
+@import "./variables/_variables";
+
+// generals - more common components or style will put in here
+@import "./generals/_generals";
+
+// containers
+@import "./containers/_containers";
+
+// components
+@import "./components/_components";
+
+// thirdParty - 3rd party modules style overwritten
+@import "./thirdParty/_thirdParty";

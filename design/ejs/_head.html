@@ -1,0 +1,23 @@
+<% sideMenu = sideMenu || '' %>
+<% demoClass = demoClass || '' %>
+
+<!DOCTYPE html>
+<html lang="en" class="main">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="/design/css/globals/normalize.css">
+    <link rel="stylesheet" href="/design/css/main.css">
+    <title>fittingroom</title>
+</head>
+<body class="main">
+
+  <div id="app" class="<%= demoClass %>" >
+
+      <% if (sideMenu === 'true'){ %>
+        <% include ./components/_sideMenu.html %>
+      <% } %>
+

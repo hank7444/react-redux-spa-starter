@@ -1,0 +1,24 @@
+$desktop-scrollbar-width: 6px;
+$medium-mobile-scrollbar-width: 4px;
+
+.iScrollIndicator {
+    border-radius: 4px !important;
+}
+
+.iScrollVerticalScrollbar {
+    width: $desktop-scrollbar-width !important;
+}
+
+.iScrollHorizontalScrollbar {
+    height: $desktop-scrollbar-width !important;
+}
+
+@media $breakpoint-medium-mobile-width {
+    .iScrollVerticalScrollbar {
+        width: $medium-mobile-scrollbar-width !important;
+    }
+
+    .iScrollHorizontalScrollbar {
+        height: $medium-mobile-scrollbar-width !important;
+    }
+}
