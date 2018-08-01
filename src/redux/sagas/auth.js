@@ -20,12 +20,35 @@ export function* login(account, password) {
   Authorization.setAuthorization(token);
 }
 
+export function* getInfo() {
+  try {
+    yield put({ type: authActions.GET_INFO });
+    const info = yield call(client.get, API_PATH_HASH.profileMe, {
+      isExternal: true,
+    });
+    yield put({ type: authActions.GET_INFO_SUCCESS, result: info });
+  } catch (error) {
+    yield put({ type: authActions.GET_INFO_FAIL, error });
+    throw error;
+  }
+}
+
+export function* watchGetInfo() {
+  yield takeEvery(authActions.SAGA_GET_INFO, function* () {
+    try {
+      yield call(getInfo);
+    } catch (error) {
+      throw error;
+    }
+  });
+}
+
 export function* watchLogin() {
   yield takeEvery(authActions.SAGA_LOGIN, function* ({ account, password } = {}) {
     try {
       yield put({ type: authActions.LOGIN });
       yield call(login, account, password);
-
+      //yield call(getInfo);
       yield put({ type: authActions.LOGIN_SUCCESS });
     } catch (error) {
       yield put({ type: authActions.LOGIN_FAIL, error, resendAccount: account });
@@ -35,4 +58,5 @@ export function* watchLogin() {
 
 export default [
   watchLogin,
+  watchGetInfo,
 ];

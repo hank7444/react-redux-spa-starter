@@ -50,7 +50,6 @@ class Login extends Component {
   }
 
   _handleSubmit(data) {
-    console.log('data', data);
     return this.props.login(data);
   }
 

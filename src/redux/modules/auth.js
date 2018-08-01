@@ -129,8 +129,7 @@ export function resetLogoutAlert() {
 
 export function getInfo() {
   return {
-    types: [cons.GET_INFO, cons.GET_INFO_SUCCESS, cons.GET_INFO_FAIL],
-    promises: client => client.get(API_PATH_HASH.profileMe, { isExternal: true }),
+    type: cons.SAGA_GET_INFO,
   };
 }
 

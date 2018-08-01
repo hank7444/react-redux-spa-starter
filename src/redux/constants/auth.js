@@ -11,3 +11,4 @@ export const GET_INFO_SUCCESS = 'auth/GET_INFO_SUCCESS';
 export const GET_INFO_FAIL = 'auth/GET_INFO_FAIL';
 
 export const SAGA_LOGIN = 'auth/SAGA_LOGIN';
+export const SAGA_GET_INFO = 'auth/SAGA_GET_INFO';

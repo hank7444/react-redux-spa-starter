@@ -81,7 +81,6 @@ export default class AuthController extends Component {
 
     // logout success, do something
     if (loginSuc && !nextLoginSuc) {
-      console.log('history', history);
       history.push('/login');
     }
 
@@ -92,7 +91,7 @@ export default class AuthController extends Component {
 
   _initData() {
     this.props.resetLogoutAlert();
-    this.props.getInfo();
+    //this.props.getInfo();
   }
 
   _isReqLogout(props) {
